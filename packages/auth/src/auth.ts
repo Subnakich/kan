@@ -1,3 +1,4 @@
+import type { Auth, BetterAuthOptions } from "better-auth";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { env } from "next-runtime-env";
@@ -6,16 +7,31 @@ import type { dbClient } from "@kan/db/client";
 import * as schema from "@kan/db/schema";
 import { sendEmail } from "@kan/email";
 
+import type { KanAuthPlugins } from "./plugins";
 import { createDatabaseHooks, createMiddlewareHooks } from "./hooks";
 import { createPlugins } from "./plugins";
 import { configuredProviders } from "./providers";
 
-export const initAuth = (db: dbClient) => {
+type KanAuthOptions = BetterAuthOptions & {
+  plugins: KanAuthPlugins;
+  user: {
+    additionalFields: {
+      stripeCustomerId: {
+        type: "string";
+        required: false;
+        defaultValue: null;
+        input: false;
+      };
+    };
+  };
+};
+
+export const initAuth = (db: dbClient): Auth<KanAuthOptions> => {
   const baseURL = env("NEXT_PUBLIC_BASE_URL") || env("BETTER_AUTH_URL");
   const trustedOrigins =
     env("BETTER_AUTH_TRUSTED_ORIGINS")?.split(",").filter(Boolean) ?? [];
 
-  return betterAuth({
+  return betterAuth<KanAuthOptions>({
     secret: env("BETTER_AUTH_SECRET"),
     baseURL,
     trustedOrigins: [...(baseURL ? [baseURL] : []), ...trustedOrigins],

@@ -12,3 +12,5 @@ type RouterOutputs = inferRouterOutputs<AppRouter>;
 
 export { createTRPCContext, appRouter, createCaller, createNextApiContext };
 export type { AppRouter, RouterInputs, RouterOutputs };
+export { taskIntegrationRouter } from "./routers/task-control";
+export { checkIntegrationIp } from "./utils/integration-ip-policy";

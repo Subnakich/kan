@@ -38,8 +38,10 @@
   },
   "prettier": "@kan/prettier-config",
   "dependencies": {
-    "@better-auth/stripe": "^1.4.6",
+    "@better-auth/api-key": "1.6.33",
+    "@better-auth/stripe": "1.6.33",
     "@kan/logger": "workspace:^",
-    "better-auth": "^1.4.6"
+    "better-auth": "1.6.33",
+    "zod": "4.6.5"
   }
 }

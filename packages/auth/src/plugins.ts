@@ -1,5 +1,7 @@
+import type { StripeOptions, StripePlugin } from "@better-auth/stripe";
+import { apiKey } from "@better-auth/api-key";
 import { stripe } from "@better-auth/stripe";
-import { apiKey, genericOAuth } from "better-auth/plugins";
+import { genericOAuth } from "better-auth/plugins";
 import { magicLink } from "better-auth/plugins/magic-link";
 
 import type { dbClient } from "@kan/db/client";
@@ -64,7 +66,15 @@ async function cancelWorkspaceAccess(
   ]);
 }
 
-export function createPlugins(db: dbClient) {
+export type KanAuthPlugins = (
+  | ReturnType<typeof socialProvidersPlugin>
+  | StripePlugin<StripeOptions & { subscription: { enabled: true } }>
+  | ReturnType<typeof apiKey>
+  | ReturnType<typeof magicLink>
+  | ReturnType<typeof genericOAuth>
+)[];
+
+export function createPlugins(db: dbClient): KanAuthPlugins {
   return [
     socialProvidersPlugin(),
     ...(process.env.NEXT_PUBLIC_KAN_ENV === "cloud"

@@ -2,7 +2,7 @@
   "name": "kan",
   "private": true,
   "engines": {
-    "node": ">=20.18.1",
+    "node": ">=22.0.0",
     "pnpm": "^9.14.2"
   },
   "packageManager": "pnpm@9.14.2",
@@ -56,6 +56,13 @@
       ]
     },
     "overrides": {
+      "next": "15.5.27",
+      "sharp": "0.35.5",
+      "fast-xml-parser": "5.11.2",
+      "fast-uri": "3.1.8",
+      "h3": "1.15.11",
+      "defu": "6.1.7",
+      "hono": "4.13.13",
       "@types/minimatch": "npm:minimatch@*",
       "@types/glob": "npm:@types/glob@^8.1.0"
     }

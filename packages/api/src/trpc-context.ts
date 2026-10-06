@@ -69,11 +69,40 @@ export const createInnerTRPCContext = (opts: CreateContextOptions) => {
 const db = createDrizzleClient();
 const baseAuth = initAuth(db);
 
+// Better Auth 1.6 throws APIError for invalid/revoked keys. Preserve HTTP
+// authentication semantics instead of exposing them as tRPC server errors.
+const getTRPCSession = async (
+  auth: ReturnType<typeof createAuthWithHeaders>,
+) => {
+  try {
+    return await auth.api.getSession();
+  } catch (error) {
+    if (isRateLimitedApiKeyError(error)) {
+      throw new TRPCError({
+        code: "TOO_MANY_REQUESTS",
+        message: "API key rate limit exceeded.",
+      });
+    }
+    if (
+      typeof error === "object" &&
+      error !== null &&
+      (error as { name?: unknown }).name === "APIError" &&
+      [401, 403].includes((error as { statusCode?: number }).statusCode ?? 0)
+    ) {
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "Invalid authentication credentials.",
+      });
+    }
+    throw error;
+  }
+};
+
 export const createTRPCContext = async ({ req }: CreateNextContextOptions) => {
   const headers = new Headers(req.headers as Record<string, string>);
   const auth = createAuthWithHeaders(baseAuth, headers);
 
-  const session = await auth.api.getSession();
+  const session = await getTRPCSession(auth);
 
   return createInnerTRPCContext({
     db,
@@ -88,7 +117,7 @@ export const createNextApiContext = async (req: NextApiRequest) => {
   const headers = new Headers(req.headers as Record<string, string>);
   const auth = createAuthWithHeaders(baseAuth, headers);
 
-  const session = await auth.api.getSession();
+  const session = await getTRPCSession(auth);
 
   return createInnerTRPCContext({
     db,
@@ -96,6 +125,18 @@ export const createNextApiContext = async (req: NextApiRequest) => {
     auth,
     headers,
     transport: "trpc",
+  });
+};
+
+// Integration bearer tokens are not Better Auth user/API keys.
+export const createServiceApiContext = (req: NextApiRequest) => {
+  const headers = new Headers(req.headers as Record<string, string>);
+  return createInnerTRPCContext({
+    db,
+    user: null,
+    auth: createAuthWithHeaders(baseAuth, headers),
+    headers,
+    transport: "rest",
   });
 };
 

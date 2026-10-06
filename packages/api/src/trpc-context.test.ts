@@ -12,7 +12,8 @@ vi.mock("@kan/logger", () => ({
   createLogger: vi.fn(() => ({ warn: vi.fn() })),
 }));
 
-const { createRESTContext } = await import("./trpc-context.js");
+const { createRESTContext, createTRPCContext, createNextApiContext } =
+  await import("./trpc-context.js");
 
 function makeOpts(): CreateNextContextOptions {
   return {
@@ -48,5 +49,37 @@ describe("createRESTContext", () => {
     const ctx = await createRESTContext(makeOpts());
 
     expect(ctx.user).toEqual({ id: "user-1" });
+  });
+});
+
+describe("tRPC authentication after Better Auth upgrade", () => {
+  it.each([401, 403])(
+    "maps APIError %s to UNAUTHORIZED",
+    async (statusCode) => {
+      getSession
+        .mockReset()
+        .mockRejectedValue({ name: "APIError", statusCode });
+      await expect(createTRPCContext(makeOpts())).rejects.toMatchObject({
+        code: "UNAUTHORIZED",
+      });
+      await expect(createNextApiContext(makeOpts().req)).rejects.toMatchObject({
+        code: "UNAUTHORIZED",
+      });
+    },
+  );
+
+  it("keeps rate limiting distinct from invalid credentials", async () => {
+    getSession
+      .mockReset()
+      .mockRejectedValue({ name: "APIError", body: { code: "RATE_LIMITED" } });
+    await expect(createTRPCContext(makeOpts())).rejects.toMatchObject({
+      code: "TOO_MANY_REQUESTS",
+    });
+  });
+
+  it("does not hide an unexpected database or session failure", async () => {
+    const error = new Error("session storage unavailable");
+    getSession.mockReset().mockRejectedValue(error);
+    await expect(createTRPCContext(makeOpts())).rejects.toBe(error);
   });
 });

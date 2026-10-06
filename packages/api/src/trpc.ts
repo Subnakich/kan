@@ -37,8 +37,16 @@ const t = initTRPC
   .create({
     transformer: superjson,
     errorFormatter({ shape, error }) {
+      let cause: unknown = error.cause;
+      let safeMessage = shape.message;
+      for (let depth = 0; cause && typeof cause === "object" && depth < 6; depth++) {
+        const detail = cause as { code?: string; message?: string; cause?: unknown };
+        if (detail.code === "23514" && detail.message?.startsWith("Task control:")) safeMessage = detail.message;
+        cause = detail.cause;
+      }
       return {
         ...shape,
+        message: safeMessage,
         data: {
           ...shape.data,
           zodError:
@@ -51,6 +59,9 @@ const t = initTRPC
 export const createTRPCRouter = t.router;
 
 export const createCallerFactory = t.createCallerFactory;
+
+// No raw input logging for confidential service-to-service integration requests.
+export const serviceProcedure = t.procedure;
 
 const loggingMiddleware = t.middleware(
   async ({ path, type, next, ctx, getRawInput }) => {

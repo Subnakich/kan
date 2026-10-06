@@ -1,7 +1,6 @@
-import type { Locale as DateFnsLocale } from "date-fns";
 import { t } from "@lingui/core/macro";
 import { Trans } from "@lingui/react/macro";
-import { format, formatDistanceToNow, isSameYear } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import {
   HiOutlineArrowLeft,
@@ -22,6 +21,7 @@ import type {
   GetCardByIdOutput,
 } from "@kan/api/types";
 import { authClient } from "@kan/auth/client";
+import { formatTaskDeadline } from "@kan/shared/utils";
 
 import Avatar from "~/components/Avatar";
 import { useLocalisation } from "~/hooks/useLocalisation";
@@ -66,7 +66,6 @@ const getActivityText = ({
   label,
   fromTitle,
   toDueDate,
-  dateLocale,
   mergedLabels,
   attachmentName,
 }: {
@@ -81,7 +80,6 @@ const getActivityText = ({
   fromTitle?: string | null;
   fromDueDate?: Date | null;
   toDueDate?: Date | null;
-  dateLocale: DateFnsLocale;
   mergedLabels?: string[];
   attachmentName?: string | null;
 }) => {
@@ -122,6 +120,8 @@ const getActivityText = ({
 
   const ACTIVITY_TYPE_MAP = {
     "card.created": t`created the card`,
+    "card.updated.owner": t`updated the responsible person`,
+    "card.updated.blocker": t`updated the blocker reason`,
     "card.updated.title": t`updated the title`,
     "card.updated.description": t`updated the description`,
     "card.updated.list": t`moved the card to another list`,
@@ -293,12 +293,7 @@ const getActivityText = ({
   }
 
   if (type === "card.updated.dueDate.added" && toDueDate) {
-    const showYear = !isSameYear(toDueDate, new Date());
-    const formattedDate = format(
-      toDueDate,
-      showYear ? "do MMM yyyy" : "do MMM",
-      { locale: dateLocale },
-    );
+    const formattedDate = `${formatTaskDeadline(toDueDate)} ${t`MSK`}`;
     return (
       <Trans>
         changed the due date to <TextHighlight>{formattedDate}</TextHighlight>
@@ -307,12 +302,7 @@ const getActivityText = ({
   }
 
   if (type === "card.updated.dueDate.updated" && toDueDate) {
-    const showYear = !isSameYear(toDueDate, new Date());
-    const formattedDate = format(
-      toDueDate,
-      showYear ? "do MMM yyyy" : "do MMM",
-      { locale: dateLocale },
-    );
+    const formattedDate = `${formatTaskDeadline(toDueDate)} ${t`MSK`}`;
     return (
       <Trans>
         changed the due date to <TextHighlight>{formattedDate}</TextHighlight>
@@ -330,6 +320,8 @@ const getActivityText = ({
 const ACTIVITY_ICON_MAP: Partial<Record<ActivityType, React.ReactNode | null>> =
   {
     "card.created": <HiOutlinePlus />,
+    "card.updated.owner": <HiOutlineUserPlus />,
+    "card.updated.blocker": <HiOutlinePencil />,
     "card.updated.title": <HiOutlinePencil />,
     "card.updated.description": <HiOutlinePencil />,
     "card.updated.label.added": <HiOutlineTag />,
@@ -504,11 +496,10 @@ const ActivityList = ({
           fromTitle: activity.fromTitle ?? null,
           fromDueDate: activity.fromDueDate ?? null,
           toDueDate: activity.toDueDate ?? null,
-          dateLocale: dateLocale,
           mergedLabels: (activity as ActivityWithMergedLabels).mergedLabels,
           attachmentName:
-            (activity as ActivityWithMergedLabels).attachment?.originalFilename ??
-            null,
+            (activity as ActivityWithMergedLabels).attachment
+              ?.originalFilename ?? null,
         });
 
         if (activity.type === "card.updated.comment.added")
@@ -541,7 +532,9 @@ const ActivityList = ({
                 size="sm"
                 name={activity.user?.name ?? ""}
                 email={activity.user?.email ?? ""}
-                imageUrl={getAvatarUrl(activity.user?.image ?? null) || undefined}
+                imageUrl={
+                  getAvatarUrl(activity.user?.image ?? null) || undefined
+                }
                 icon={getActivityIcon(
                   activity.type,
                   activity.fromList?.index,

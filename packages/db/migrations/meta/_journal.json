@@ -253,6 +253,41 @@
       "when": 1788209875712,
       "tag": "20260831205755_AddCardRelationIndexes",
       "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "7",
+      "when": 1791283414410,
+      "tag": "20261006104334_AddTaskControl",
+      "breakpoints": true
+    },
+    {
+      "idx": 37,
+      "version": "7",
+      "when": 1791283985899,
+      "tag": "20261006105305_FixTaskControlInsert",
+      "breakpoints": true
+    },
+    {
+      "idx": 38,
+      "version": "7",
+      "when": 1791290307672,
+      "tag": "20261006123827_UpgradeApiKeyPlugin",
+      "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "7",
+      "when": 1791296598921,
+      "tag": "20261006142318_NativeTaskOwnership",
+      "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "7",
+      "when": 1791301192388,
+      "tag": "20261006153952_AddRedminePollingQueue",
+      "breakpoints": true
     }
   ]
 }

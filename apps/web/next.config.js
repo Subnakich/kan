@@ -21,7 +21,8 @@ const config = {
     "**/*": [
       "@esbuild/**",
       "esbuild/**",
-      "typescript/**",
+      // Exclude the compiler package, not Next's own lib/typescript runtime.
+      "**/node_modules/typescript/**",
       "webpack/**",
       "uglify-js/**",
       "terser/**",
@@ -38,8 +39,8 @@ const config = {
     "@kan/mcp",
   ],
 
-  /** We already do linting and typechecking as separate tasks in CI */
-  typescript: { ignoreBuildErrors: true },
+  /** Production builds must pass type checking. */
+  typescript: { ignoreBuildErrors: false },
 
   // temporarily ignore eslint errors during build until we fix all the errors sigh
   eslint: { ignoreDuringBuilds: true },

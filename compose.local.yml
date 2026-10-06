@@ -1,0 +1,56 @@
+name: trisoft-kan-local
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: kan
+      POSTGRES_USER: kan
+      POSTGRES_PASSWORD: kan-local-only
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U kan -d kan]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - 127.0.0.1:3100:3000
+    volumes:
+      - .:/app
+      - pnpm-store:/root/.local/share/pnpm/store
+    environment:
+      POSTGRES_URL: postgresql://kan:kan-local-only@postgres:5432/kan
+      NEXT_PUBLIC_BASE_URL: http://localhost:3100
+      BETTER_AUTH_SECRET: local-kan-development-secret-change-for-any-deployment
+      NEXT_PUBLIC_ALLOW_CREDENTIALS: "true"
+      NEXT_PUBLIC_DISABLE_EMAIL: "true"
+      NEXT_PUBLIC_KAN_ENV: self-hosted
+      TASK_CONTROL_INSTANCE_ID: trisoft-kan-local
+      TASK_CONTROL_SERVICE_TOKEN: local-kan-integration-token
+      TASK_CONTROL_ALLOWED_IPS: ${TASK_CONTROL_ALLOWED_IPS:-}
+      TASK_CONTROL_TRUSTED_PROXIES: ${TASK_CONTROL_TRUSTED_PROXIES:-}
+      NEXT_TELEMETRY_DISABLED: "1"
+    command: sh -c 'pnpm install --frozen-lockfile && pnpm db:migrate && pnpm --filter @kan/web dev --hostname 0.0.0.0'
+    depends_on:
+      postgres:
+        condition: service_healthy
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    volumes:
+      - ./tools/task-control:/app/tools/task-control:ro
+      - mock-gateway:/data
+    environment:
+      TASK_CONTROL_GATEWAY_TOKEN: local-gateway-integration-token
+      KAN_URL: http://web:3000
+      TASK_CONTROL_SERVICE_TOKEN: local-kan-integration-token
+    command: node tools/task-control/mock-gateway.mjs
+volumes:
+  postgres:
+  pnpm-store:
+  mock-gateway:

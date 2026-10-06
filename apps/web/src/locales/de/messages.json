@@ -32,7 +32,7 @@
     "comments": [],
     "origin": [
       ["src/views/boards/index.tsx", 58],
-      ["src/views/card/index.tsx", 326]
+      ["src/views/card/index.tsx", 328]
     ],
     "translation": "{0} | {1}"
   },
@@ -78,7 +78,7 @@
       "0": ["isTemplate ? \"Template\" : \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 887]],
+    "origin": [["src/views/board/index.tsx", 888]],
     "translation": "{0} nicht gefunden"
   },
   "0xWkkH": {
@@ -192,6 +192,13 @@
     "origin": [["src/views/home/index.tsx", 71]],
     "translation": "Eine leistungsstarke, flexible Kanban-App, die dir hilft, Arbeit zu organisieren, Fortschritte zu verfolgen und Ergebnisse zu liefern – alles an einem Ort."
   },
+  "aaJj/a": {
+    "message": "Acceptance criteria",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 172]],
+    "translation": ""
+  },
   "AeXO77": {
     "message": "Account",
     "placeholders": {},
@@ -254,7 +261,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/index.tsx", 481],
+      ["src/views/card/index.tsx", 483],
       ["src/views/public/board/CardModal.tsx", 209]
     ],
     "translation": "Aktivität"
@@ -289,12 +296,33 @@
     "origin": [["src/views/board/components/List.tsx", 152]],
     "translation": "Karte hinzufügen"
   },
+  "XK5TeU": {
+    "message": "Add a card member to assign a responsible person.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 96]],
+    "translation": ""
+  },
+  "vQ6BL3": {
+    "message": "Add a title, description and responsible person before confirming.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 197]],
+    "translation": ""
+  },
   "qtE5nt": {
     "message": "Add an item...",
     "placeholders": {},
     "comments": [],
     "origin": [["src/views/card/components/NewChecklistItemForm.tsx", 157]],
     "translation": "Element hinzufügen..."
+  },
+  "UlQkn3": {
+    "message": "Add blocker",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 110]],
+    "translation": ""
   },
   "sFY+gw": {
     "message": "Add card",
@@ -362,7 +390,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/components/MemberSelector.tsx", 138],
+      ["src/views/card/components/MemberSelector.tsx", 139],
       ["src/views/members/components/InviteMemberForm.tsx", 243]
     ],
     "translation": "Mitglied hinzufügen"
@@ -388,7 +416,7 @@
       "labelList": ["labelList"]
     },
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 102]],
+    "origin": [["src/views/card/components/ActivityList.tsx", 100]],
     "translation": "hat {0} Labels hinzugefügt: <0>{labelList}</0>"
   },
   "h4VV67": {
@@ -948,6 +976,13 @@
     "origin": [["src/views/settings/BillingSettings.tsx", 98]],
     "translation": "Abrechnungsportal"
   },
+  "w+p+KU": {
+    "message": "Blocker reason",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 122]],
+    "translation": ""
+  },
   "4RoY9J": {
     "message": "Blog Post",
     "placeholders": {},
@@ -960,8 +995,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 859],
-      ["src/views/card/index.tsx", 326],
+      ["src/views/board/index.tsx", 860],
+      ["src/views/card/index.tsx", 328],
       ["src/views/public/board/index.tsx", 125]
     ],
     "translation": "Board"
@@ -994,7 +1029,7 @@
     "message": "Board name",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 877]],
+    "origin": [["src/views/board/index.tsx", 878]],
     "translation": "Board-Name"
   },
   "wewm3j": {
@@ -1387,6 +1422,8 @@
       ["src/views/card/components/DeleteCardConfirmation.tsx", 86],
       ["src/views/card/components/DeleteChecklistConfirmation.tsx", 64],
       ["src/views/card/components/DeleteCommentConfirmation.tsx", 77],
+      ["src/views/card/components/DueDateSelector.tsx", 93],
+      ["src/views/card/components/TaskControlPanel.tsx", 137],
       ["src/views/members/components/DeleteMemberConfirmation.tsx", 55],
       ["src/views/onboarding/select-plan/index.tsx", 246],
       ["src/views/settings/components/Avatar.tsx", 287],
@@ -1405,8 +1442,15 @@
     "message": "Card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/index.tsx", 326]],
+    "origin": [["src/views/card/index.tsx", 328]],
     "translation": "Karte"
+  },
+  "xt/l7O": {
+    "message": "Card changed after export. Redmine is a snapshot, not a live sync.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 223]],
+    "translation": ""
   },
   "sU2uWc": {
     "message": "Card duplicated",
@@ -1437,8 +1481,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/index.tsx", 389],
-      ["src/views/card/index.tsx", 426]
+      ["src/views/card/index.tsx", 391],
+      ["src/views/card/index.tsx", 428]
     ],
     "translation": "Karte nicht gefunden"
   },
@@ -1461,7 +1505,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 432],
+      ["src/views/board/index.tsx", 433],
       ["src/views/card/components/Dropdown.tsx", 74],
       ["src/views/public/board/CardModal.tsx", 38]
     ],
@@ -1500,10 +1544,17 @@
     },
     "comments": [],
     "origin": [
-      ["src/views/card/components/ActivityList.tsx", 303],
-      ["src/views/card/components/ActivityList.tsx", 317]
+      ["src/views/card/components/ActivityList.tsx", 298],
+      ["src/views/card/components/ActivityList.tsx", 307]
     ],
     "translation": "hat das Fälligkeitsdatum auf <0>{formattedDate}</0> geändert"
+  },
+  "fu3lF2": {
+    "message": "Check export status",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 130]],
+    "translation": ""
   },
   "pFGfsR": {
     "message": "Check out some of our favorite open source projects.",
@@ -1511,6 +1562,13 @@
     "comments": [],
     "origin": [["src/views/oss-friends/index.tsx", 61]],
     "translation": "Schauen Sie sich einige unserer bevorzugten Open-Source-Projekte an."
+  },
+  "Hr9zKY": {
+    "message": "Check the description and responsible person. Deadline is optional. Delete unnecessary cards; confirm the rest.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 184]],
+    "translation": ""
   },
   "5IXWmO": {
     "message": "Check your inbox",
@@ -1556,6 +1614,13 @@
       ["src/views/settings/BillingSettings.tsx", 80]
     ],
     "translation": "Plan wählen"
+  },
+  "xCJdfg": {
+    "message": "Clear",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/DueDateSelector.tsx", 88]],
+    "translation": ""
   },
   "VHS0aJ": {
     "message": "Clear all custom permissions?",
@@ -1614,7 +1679,7 @@
     "comments": [],
     "origin": [
       ["src/components/Dashboard.tsx", 281],
-      ["src/views/card/index.tsx", 380],
+      ["src/views/card/index.tsx", 382],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
     ],
@@ -1725,6 +1790,20 @@
     "comments": [],
     "origin": [["src/views/settings/PermissionsSettings.tsx", 56]],
     "translation": "Konfigurieren Sie, welche Aktionen für jede Workspace-Rolle erlaubt sind. Diese Berechtigungen gelten für alle Mitglieder mit dieser Rolle."
+  },
+  "2nUkFQ": {
+    "message": "Confirm → Queue",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 207]],
+    "translation": ""
+  },
+  "WDsUkF": {
+    "message": "Confirm export",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 124]],
+    "translation": ""
   },
   "86XI28": {
     "message": "Confirm your email preferences:",
@@ -2021,8 +2100,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 138],
-      ["src/views/board/index.tsx", 1012]
+      ["src/views/board/index.tsx", 139],
+      ["src/views/board/index.tsx", 1014]
     ],
     "translation": "Neue Liste erstellen"
   },
@@ -2061,7 +2140,7 @@
     "message": "created the card",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 124]],
+    "origin": [["src/views/card/components/ActivityList.tsx", 122]],
     "translation": "hat die Karte erstellt"
   },
   "J5nbej": {
@@ -2086,7 +2165,7 @@
     "message": "Current list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ListSelector.tsx", 85]],
+    "origin": [["src/views/card/components/ListSelector.tsx", 86]],
     "translation": "Aktuelle Liste"
   },
   "D3C4Yx": {
@@ -2207,6 +2286,30 @@
     "comments": [],
     "origin": [["src/views/members/components/InviteMemberForm.tsx", 342]],
     "translation": "Einladungslink deaktivieren"
+  },
+  "gPt7dS": {
+    "message": "Deadline — Moscow time (UTC+3)",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/card/components/DueDateSelector.tsx", 64],
+      ["src/views/card/components/DueDateSelector.tsx", 67]
+    ],
+    "translation": ""
+  },
+  "UHyeNO": {
+    "message": "Deadline is optional.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/DueDateSelector.tsx", 76]],
+    "translation": ""
+  },
+  "7Kb2xb": {
+    "message": "Deadlines use Moscow time (UTC+3).",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 38]],
+    "translation": ""
   },
   "bKzM8L": {
     "message": "Dedicated account manager",
@@ -2496,7 +2599,7 @@
     "origin": [
       ["src/views/board/components/Filters.tsx", 178],
       ["src/views/board/components/NewCardForm.tsx", 580],
-      ["src/views/card/index.tsx", 154]
+      ["src/views/card/index.tsx", 155]
     ],
     "translation": "Fälligkeitsdatum"
   },
@@ -2566,6 +2669,13 @@
       ["src/views/settings/components/WebhookList.tsx", 128]
     ],
     "translation": "Bearbeiten"
+  },
+  "K58uJl": {
+    "message": "Edit blocker",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 110]],
+    "translation": ""
   },
   "tIdipJ": {
     "message": "Edit board URL",
@@ -2668,6 +2778,20 @@
     "comments": [],
     "origin": [["src/views/settings/WorkspaceSettings.tsx", 73]],
     "translation": "E-Mail-Sichtbarkeit"
+  },
+  "9vZ8G0": {
+    "message": "Enable on an empty board. Creates Review, Queue, In Progress, Blocked and Done.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 52]],
+    "translation": ""
+  },
+  "mTDcVw": {
+    "message": "Enable task control",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 53]],
+    "translation": ""
   },
   "bFREhu": {
     "message": "End of list",
@@ -2960,6 +3084,35 @@
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 91]],
     "translation": "Ausführung"
   },
+  "6oiJNx": {
+    "message": "Export is not complete. Check operation status.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 93]],
+    "translation": "",
+    "obsolete": true
+  },
+  "+X2hHn": {
+    "translation": "",
+    "message": "Export outcome is unknown. Ask the administrator to reconcile it; do not create another export.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 131]]
+  },
+  "4OjDcU": {
+    "message": "Export snapshot to Redmine",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 83]],
+    "translation": ""
+  },
+  "Y3mHoj": {
+    "message": "Exported snapshot. Task control remains in Kan.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 224]],
+    "translation": ""
+  },
   "GwNIE2": {
     "message": "Extended Roadmap",
     "placeholders": {},
@@ -3201,6 +3354,13 @@
     ],
     "translation": "Vollständiger API-Zugriff"
   },
+  "wUXFsT": {
+    "message": "Full exported snapshot",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 122]],
+    "translation": ""
+  },
   "KiVc+q": {
     "message": "Full-time",
     "placeholders": {},
@@ -3258,7 +3418,7 @@
     "message": "Get started by creating a new list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 994]],
+    "origin": [["src/views/board/index.tsx", 996]],
     "translation": "Legen Sie los, indem Sie eine neue Liste erstellen"
   },
   "oW13KZ": {
@@ -3691,7 +3851,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/components/MemberSelector.tsx", 115],
+      ["src/views/card/components/MemberSelector.tsx", 116],
       ["src/views/members/components/InviteMemberForm.tsx", 363]
     ],
     "translation": "Mitglied einladen"
@@ -3743,6 +3903,13 @@
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 82]],
     "translation": "Junior"
   },
+  "gFkk6D": {
+    "message": "Kan remains the task-control system. Export creates a one-time snapshot.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 85]],
+    "translation": ""
+  },
   "aWDhU5": {
     "message": "Kanban is better with a team. Perfect for small and growing teams looking to collaborate.",
     "placeholders": {},
@@ -3783,7 +3950,7 @@
       ["src/views/board/components/Filters.tsx", 160],
       ["src/views/board/components/NewCardForm.tsx", 529],
       ["src/views/card/components/LabelSelector.tsx", 102],
-      ["src/views/card/index.tsx", 134]
+      ["src/views/card/index.tsx", 135]
     ],
     "translation": "Labels"
   },
@@ -3903,7 +4070,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 430],
+      ["src/views/board/index.tsx", 431],
       ["src/views/card/components/Dropdown.tsx", 72],
       ["src/views/public/board/CardModal.tsx", 36],
       ["src/views/public/board/index.tsx", 77]
@@ -3916,7 +4083,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/CardContextDuplicateModal.tsx", 117],
-      ["src/views/card/index.tsx", 125]
+      ["src/views/card/index.tsx", 126]
     ],
     "translation": "Liste"
   },
@@ -3947,11 +4114,18 @@
     ],
     "translation": "Listen"
   },
+  "yQ2kGp": {
+    "translation": "",
+    "message": "Load more",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 94]]
+  },
   "1rVAfU": {
     "message": "Load more activities",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 579]],
+    "origin": [["src/views/card/components/ActivityList.tsx", 572]],
     "translation": "Weitere Aktivitäten laden"
   },
   "0qyZ4b": {
@@ -3967,8 +4141,15 @@
     "message": "Loading...",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 579]],
+    "origin": [["src/views/card/components/ActivityList.tsx", 572]],
     "translation": "Wird geladen ..."
+  },
+  "b+PRvt": {
+    "message": "LOCAL DEMO — no real Redmine issue will be created.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 87]],
+    "translation": ""
   },
   "N/bcWA": {
     "message": "Login | kan.bn",
@@ -4079,7 +4260,7 @@
     "comments": [],
     "origin": [
       ["src/views/card/components/ActivityList.tsx", 55],
-      ["src/views/card/components/ActivityList.tsx", 88],
+      ["src/views/card/components/ActivityList.tsx", 86],
       ["src/views/members/index.tsx", 222]
     ],
     "translation": "Mitglied"
@@ -4106,8 +4287,8 @@
       ["src/components/SideNavigation.tsx", 122],
       ["src/views/board/components/Filters.tsx", 151],
       ["src/views/board/components/NewCardForm.tsx", 487],
-      ["src/views/card/components/MemberSelector.tsx", 116],
-      ["src/views/card/index.tsx", 144],
+      ["src/views/card/components/MemberSelector.tsx", 117],
+      ["src/views/card/index.tsx", 145],
       ["src/views/members/index.tsx", 284],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 90]
     ],
@@ -4210,6 +4391,18 @@
     "origin": [["src/views/card/components/ActivityList.tsx", 127]],
     "translation": "hat die Karte in eine andere Liste verschoben"
   },
+  "9ijJPY": {
+    "message": "MSK",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/board/components/Card.tsx", 120],
+      ["src/views/card/components/ActivityList.tsx", 296],
+      ["src/views/card/components/ActivityList.tsx", 305],
+      ["src/views/card/components/DueDateSelector.tsx", 59]
+    ],
+    "translation": ""
+  },
   "uEGGDs": {
     "message": "My webhook",
     "placeholders": {},
@@ -4311,7 +4504,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/NewListForm.tsx", 128],
-      ["src/views/board/index.tsx", 939]
+      ["src/views/board/index.tsx", 940]
     ],
     "translation": "Neue Liste"
   },
@@ -4458,14 +4651,14 @@
     "message": "No lists",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 990]],
+    "origin": [["src/views/board/index.tsx", 992]],
     "translation": "Keine Listen"
   },
   "fvLNDy": {
     "message": "No lists have been created yet",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 995]],
+    "origin": [["src/views/board/index.tsx", 997]],
     "translation": "Es wurden noch keine Listen erstellt"
   },
   "i30J2U": {
@@ -4585,6 +4778,13 @@
     "comments": [],
     "origin": [["src/views/home/components/Features.tsx", 101]],
     "translation": "Organisieren und finden Sie Karten schnell mit leistungsstarken Filterwerkzeugen."
+  },
+  "V/TWlQ": {
+    "message": "Original deadline",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 164]],
+    "translation": ""
   },
   "Un80BR": {
     "message": "OSS Friends",
@@ -4887,9 +5087,9 @@
       ["src/views/board/components/NewTemplateForm.tsx", 77],
       ["src/views/board/components/UpdateBoardSlugForm.tsx", 73],
       ["src/views/board/components/VisibilityButton.tsx", 57],
-      ["src/views/board/index.tsx", 284],
-      ["src/views/board/index.tsx", 340],
-      ["src/views/board/index.tsx", 377],
+      ["src/views/board/index.tsx", 285],
+      ["src/views/board/index.tsx", 341],
+      ["src/views/board/index.tsx", 378],
       ["src/views/boards/components/ImportBoardsForm.tsx", 243],
       ["src/views/boards/components/ImportBoardsForm.tsx", 395],
       ["src/views/card/components/AttachmentThumbnails.tsx", 74],
@@ -4901,15 +5101,13 @@
       ["src/views/card/components/DeleteCardConfirmation.tsx", 52],
       ["src/views/card/components/DeleteChecklistConfirmation.tsx", 38],
       ["src/views/card/components/DeleteCommentConfirmation.tsx", 46],
-      ["src/views/card/components/DueDateSelector.tsx", 64],
       ["src/views/card/components/LabelSelector.tsx", 75],
-      ["src/views/card/components/ListSelector.tsx", 55],
       ["src/views/card/components/MemberSelector.tsx", 82],
       ["src/views/card/components/NewChecklistForm.tsx", 82],
       ["src/views/card/components/NewChecklistItemForm.tsx", 106],
       ["src/views/card/components/NewCommentForm.tsx", 38],
-      ["src/views/card/index.tsx", 241],
-      ["src/views/card/index.tsx", 254],
+      ["src/views/card/index.tsx", 243],
+      ["src/views/card/index.tsx", 256],
       ["src/views/members/components/DeleteMemberConfirmation.tsx", 28],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 42],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 65],
@@ -4946,7 +5144,7 @@
     "origin": [
       ["src/views/board/components/CardContextDuplicateModal.tsx", 76],
       ["src/views/board/components/CardContextMoveListModal.tsx", 42],
-      ["src/views/board/index.tsx", 439],
+      ["src/views/board/index.tsx", 440],
       ["src/views/card/components/Dropdown.tsx", 55],
       ["src/views/card/components/Dropdown.tsx", 81],
       ["src/views/card/components/Dropdown.tsx", 100],
@@ -4963,6 +5161,13 @@
       ["src/views/board/components/CardContextDuplicateModal.tsx", 193]
     ],
     "translation": "Position in Liste (0 = erste, leer lassen für Ende)"
+  },
+  "v8M4rv": {
+    "message": "Preview export",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 117]],
+    "translation": ""
   },
   "1xwZj/": {
     "message": "Previous month",
@@ -4984,6 +5189,13 @@
       ["src/views/pricing/index.tsx", 40]
     ],
     "translation": "Preise"
+  },
+  "1hKEom": {
+    "message": "Priority",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 100]],
+    "translation": ""
   },
   "ESClHO": {
     "message": "Priority email support",
@@ -5095,6 +5307,13 @@
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 73]],
     "translation": "Recruiting"
   },
+  "sw1Oou": {
+    "message": "Redmine project",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 88]],
+    "translation": ""
+  },
   "ekCRTP": {
     "message": "Rejected",
     "placeholders": {},
@@ -5146,7 +5365,7 @@
       "labelList": ["labelList"]
     },
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 116]],
+    "origin": [["src/views/card/components/ActivityList.tsx", 114]],
     "translation": "hat {0} Labels entfernt: <0>{labelList}</0>"
   },
   "kQwvU8": {
@@ -5201,7 +5420,7 @@
     "comments": [],
     "origin": [
       ["src/views/card/components/ActivityList.tsx", 144],
-      ["src/views/card/components/ActivityList.tsx", 324]
+      ["src/views/card/components/ActivityList.tsx", 314]
     ],
     "translation": "hat das Fälligkeitsdatum entfernt"
   },
@@ -5269,6 +5488,23 @@
     "comments": [],
     "origin": [["src/views/home/components/Footer.tsx", 114]],
     "translation": "Ressourcen"
+  },
+  "6XesSl": {
+    "message": "Responsible person",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/card/components/TaskControlPanel.tsx", 59],
+      ["src/views/card/components/TaskControlPanel.tsx", 62]
+    ],
+    "translation": ""
+  },
+  "6gRgw8": {
+    "translation": "",
+    "message": "Retry",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 127]]
   },
   "5k0NLb": {
     "message": "Review",
@@ -5343,6 +5579,8 @@
     "origin": [
       ["src/components/YouTubeEmbed/EditYouTubeModal.tsx", 183],
       ["src/views/card/components/Comment.tsx", 202],
+      ["src/views/card/components/DueDateSelector.tsx", 108],
+      ["src/views/card/components/TaskControlPanel.tsx", 149],
       ["src/views/settings/components/Avatar.tsx", 290]
     ],
     "translation": "Speichern"
@@ -5445,6 +5683,13 @@
     ],
     "translation": "Liste auswählen"
   },
+  "7EQPIy": {
+    "message": "Select a responsible person",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 88]],
+    "translation": ""
+  },
   "NM2hyD": {
     "message": "Select a workspace",
     "placeholders": {},
@@ -5468,6 +5713,13 @@
     "comments": [],
     "origin": [["src/views/settings/components/NewWebhookModal.tsx", 32]],
     "translation": "Wählen Sie mindestens ein Ereignis aus"
+  },
+  "1kovRK": {
+    "message": "Select project",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 38]],
+    "translation": ""
   },
   "rYUZIe": {
     "message": "Select source",
@@ -5532,7 +5784,7 @@
     "origin": [
       ["src/views/board/components/CardContextDueDateModal.tsx", 20],
       ["src/views/board/components/CardContextMenu.tsx", 56],
-      ["src/views/card/components/DueDateSelector.tsx", 121]
+      ["src/views/card/components/DueDateSelector.tsx", 60]
     ],
     "translation": "Fälligkeitsdatum festlegen"
   },
@@ -5836,7 +6088,10 @@
     "message": "Status",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/WebhookList.tsx", 232]],
+    "origin": [
+      ["src/views/card/components/RedmineExport.tsx", 98],
+      ["src/views/settings/components/WebhookList.tsx", 232]
+    ],
     "translation": "Status"
   },
   "hQRttt": {
@@ -5913,6 +6168,30 @@
     "origin": [["src/components/UserMenu.tsx", 144]],
     "translation": "System"
   },
+  "tu6UEd": {
+    "message": "Task control",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/board/components/TaskBoardControl.tsx", 28],
+      ["src/views/card/components/TaskControlPanel.tsx", 56]
+    ],
+    "translation": ""
+  },
+  "NUbwXo": {
+    "message": "Task control · MSK",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 44]],
+    "translation": ""
+  },
+  "E5nCg2": {
+    "message": "Task source",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/TaskControlPanel.tsx", 156]],
+    "translation": ""
+  },
   "KM6m8p": {
     "message": "Team",
     "placeholders": {},
@@ -5947,8 +6226,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 859],
-      ["src/views/board/index.tsx", 896]
+      ["src/views/board/index.tsx", 860],
+      ["src/views/board/index.tsx", 897]
     ],
     "translation": "Vorlage"
   },
@@ -6356,6 +6635,13 @@
     "origin": [["src/views/home/components/Features.tsx", 111]],
     "translation": "Verfolgen Sie alle Kartenänderungen mit detailliertem Aktivitätsverlauf."
   },
+  "uzDJTl": {
+    "message": "Tracker",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 96]],
+    "translation": ""
+  },
   "dtbpdR": {
     "message": "Trello",
     "placeholders": {},
@@ -6412,7 +6698,7 @@
     "message": "Unable to add label",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/index.tsx", 253]],
+    "origin": [["src/views/card/index.tsx", 255]],
     "translation": "Label konnte nicht hinzugefügt werden"
   },
   "LeM5RY": {
@@ -6434,7 +6720,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 437],
+      ["src/views/board/index.tsx", 438],
       ["src/views/card/components/Dropdown.tsx", 79],
       ["src/views/public/board/CardModal.tsx", 43],
       ["src/views/public/board/index.tsx", 84]
@@ -6634,8 +6920,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 339],
-      ["src/views/card/index.tsx", 240]
+      ["src/views/board/index.tsx", 340],
+      ["src/views/card/index.tsx", 242]
     ],
     "translation": "Karte konnte nicht aktualisiert werden"
   },
@@ -6665,8 +6951,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 376],
-      ["src/views/card/components/DueDateSelector.tsx", 63]
+      ["src/views/board/index.tsx", 377],
+      ["src/views/card/components/DueDateSelector.tsx", 41]
     ],
     "translation": "Fälligkeitsdatum konnte nicht aktualisiert werden"
   },
@@ -6682,7 +6968,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 283],
+      ["src/views/board/index.tsx", 284],
       ["src/views/card/components/ListSelector.tsx", 54]
     ],
     "translation": "Liste konnte nicht aktualisiert werden"
@@ -6885,6 +7171,13 @@
     "origin": [["src/views/card/components/ActivityList.tsx", 136]],
     "translation": "hat ein Checklisten-Element aktualisiert"
   },
+  "FCCcQI": {
+    "message": "updated the blocker reason",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/ActivityList.tsx", 124]],
+    "translation": ""
+  },
   "tGwwnq": {
     "message": "updated the description",
     "placeholders": {},
@@ -6898,6 +7191,13 @@
     "comments": [],
     "origin": [["src/views/card/components/ActivityList.tsx", 143]],
     "translation": "hat das Fälligkeitsdatum aktualisiert"
+  },
+  "SbBiHe": {
+    "message": "updated the responsible person",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/ActivityList.tsx", 123]],
+    "translation": ""
   },
   "V3MPSQ": {
     "message": "updated the title",
@@ -7099,6 +7399,13 @@
     "origin": [["src/views/board/components/VisibilityButton.tsx", 100]],
     "translation": "Sichtbarkeit"
   },
+  "qUIljU": {
+    "translation": "",
+    "message": "Waiting for bot. You can return to this card later.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 86]]
+  },
   "BJbLe4": {
     "message": "We are using the <0>AGPL-3.0 license</0>.",
     "placeholders": {},
@@ -7272,7 +7579,7 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 47],
-      ["src/views/board/index.tsx", 859],
+      ["src/views/board/index.tsx", 860],
       ["src/views/boards/index.tsx", 58],
       ["src/views/members/index.tsx", 279],
       ["src/views/public/board/index.tsx", 125],
@@ -7515,8 +7822,8 @@
     "origin": [
       ["src/views/board/components/List.tsx", 133],
       ["src/views/board/components/VisibilityButton.tsx", 72],
-      ["src/views/board/index.tsx", 927],
-      ["src/views/board/index.tsx", 1001],
+      ["src/views/board/index.tsx", 928],
+      ["src/views/board/index.tsx", 1003],
       ["src/views/boards/components/BoardsList.tsx", 71],
       ["src/views/boards/index.tsx", 69],
       ["src/views/boards/index.tsx", 90]

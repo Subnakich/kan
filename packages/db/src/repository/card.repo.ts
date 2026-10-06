@@ -48,6 +48,7 @@ export const create = async (
   },
 ) => {
   return db.transaction(async (tx) => {
+    await tx.execute(sql`SELECT pg_advisory_xact_lock(712340)`);
     let index = 0;
 
     if (cardInput.position === "end") {
@@ -933,7 +934,11 @@ export const softDelete = async (
       );
     }
 
-    return result;
+    const parent = await tx.query.lists.findFirst({ where: eq(lists.id, result.listId), with: { board: true } });
+    // Explicit task-control behavior: discard a rejected task permanently, retain only its import tombstone.
+    if (parent?.board.taskControlEnabled) await tx.delete(cards).where(eq(cards.id, result.id));
+
+    return { ...result, permanentlyDeleted: parent?.board.taskControlEnabled ?? false };
   });
 };
 

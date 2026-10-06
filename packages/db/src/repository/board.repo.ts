@@ -248,6 +248,7 @@ export const getByPublicId = async (
           name: true,
           boardId: true,
           index: true,
+          taskRole: true,
         },
         with: {
           cards: {
@@ -259,6 +260,7 @@ export const getByPublicId = async (
               index: true,
               dueDate: true,
               cardNumber: true,
+              ownerMemberPublicId: true,
             },
             with: {
               labels: {
@@ -371,6 +373,8 @@ export const getByPublicId = async (
       ...list,
       cards: list.cards.map((card) => ({
         ...card,
+        isDone: list.taskRole === "done",
+        ownerName: board.workspace.members.find((member) => member.publicId === card.ownerMemberPublicId)?.user?.name ?? null,
         labels: card.labels.map((label) => label.label),
         members: card.members
           .map((member) => member.member)
@@ -445,6 +449,7 @@ export const getBySlug = async (
           name: true,
           boardId: true,
           index: true,
+          taskRole: true,
         },
         with: {
           cards: {
@@ -546,6 +551,7 @@ export const getBySlug = async (
       ...list,
       cards: list.cards.map((card) => ({
         ...card,
+        isDone: list.taskRole === "done",
         labels: card.labels.map((label) => label.label),
       })),
     })),

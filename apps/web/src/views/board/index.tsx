@@ -58,6 +58,7 @@ import { api } from "~/utils/api";
 import { formatToArray, isPlaceholderPublicId } from "~/utils/helpers";
 import { DeleteCardConfirmation } from "~/views/card/components/DeleteCardConfirmation";
 import BoardDropdown from "./components/BoardDropdown";
+import TaskBoardControl from "./components/TaskBoardControl";
 import CalendarView from "./components/CalendarView";
 import { CardContextDueDateModal } from "./components/CardContextDueDateModal";
 import { CardContextDuplicateModal } from "./components/CardContextDuplicateModal";
@@ -940,6 +941,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                 </span>
               </Button>
             </Tooltip>
+            <TaskBoardControl boardPublicId={boardId ?? ""} canEdit={canCreateList} />
             <BoardDropdown
               isTemplate={!!isTemplate}
               isLoading={!boardData}

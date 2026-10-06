@@ -1,4 +1,4 @@
-import { format, isBefore, isSameYear, startOfDay } from "date-fns";
+import { t } from "@lingui/core/macro";
 import { HiOutlinePaperClip } from "react-icons/hi";
 import {
   HiBars3BottomLeft,
@@ -7,11 +7,12 @@ import {
 } from "react-icons/hi2";
 import { twMerge } from "tailwind-merge";
 
+import { formatTaskDeadline } from "@kan/shared/utils";
+
 import Avatar from "~/components/Avatar";
 import Badge from "~/components/Badge";
 import CircularProgress from "~/components/CircularProgress";
 import LabelIcon from "~/components/LabelIcon";
-import { useLocalisation } from "~/hooks/useLocalisation";
 import { getAvatarUrl } from "~/utils/helpers";
 
 const Card = ({
@@ -24,6 +25,8 @@ const Card = ({
   comments,
   attachments,
   dueDate,
+  isDone = false,
+  ownerName,
 }: {
   title: string;
   ticketNumber?: string | null;
@@ -47,10 +50,10 @@ const Card = ({
   comments: { publicId: string }[];
   attachments?: { publicId: string }[];
   dueDate?: Date | null;
+  isDone?: boolean;
+  ownerName?: string | null;
 }) => {
-  const { dateLocale } = useLocalisation();
-  const showYear = dueDate ? !isSameYear(dueDate, new Date()) : false;
-  const isOverdue = dueDate ? isBefore(dueDate, startOfDay(new Date())) : false;
+  const isOverdue = dueDate ? !isDone && dueDate.getTime() < Date.now() : false;
   const completedItems = checklists.reduce((acc, checklist) => {
     return acc + checklist.items.filter((item) => item.completed).length;
   }, 0);
@@ -75,6 +78,11 @@ const Card = ({
         </span>
       )}
       <span className="break-words">{title}</span>
+      {ownerName && (
+        <span className="mt-1 truncate text-xs text-light-700 dark:text-dark-800">
+          {ownerName}
+        </span>
+      )}
       {labels.length ||
       members.length ||
       checklists.length > 0 ||
@@ -109,9 +117,7 @@ const Card = ({
                 >
                   <HiOutlineClock className="h-4 w-4" />
                   <span className="text-[11px]">
-                    {format(dueDate, showYear ? "do MMM yyyy" : "do MMM", {
-                      locale: dateLocale,
-                    })}
+                    {formatTaskDeadline(dueDate)} {t`MSK`}
                   </span>
                 </div>
               )}

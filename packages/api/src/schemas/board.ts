@@ -40,6 +40,8 @@ const boardDetailCardSchema = z.object({
   description: z.string().nullable(),
   index: z.number(),
   cardNumber: z.number().nullable(),
+  isDone: z.boolean().optional(),
+  ownerName: z.string().nullable().optional(),
   dueDate: z.date().nullable(),
   labels: z.array(labelSchema),
   members: z.array(boardCardMemberSchema),
@@ -53,7 +55,7 @@ export const boardDetailSchema = z.object({
   publicId: z.string(),
   name: z.string(),
   slug: z.string(),
-  visibility: z.string(),
+  visibility: z.enum(["public", "private"]),
   isArchived: z.boolean(),
   favorite: z.boolean(),
   workspace: z.object({
@@ -80,6 +82,7 @@ export const boardDetailSchema = z.object({
 
 // ─── Card sub-object inside board detail (bySlug — no members) ─
 const boardSlugCardSchema = z.object({
+  isDone: z.boolean().optional(),
   publicId: z.string(),
   title: z.string(),
   description: z.string().nullable(),
@@ -96,7 +99,7 @@ export const boardBySlugSchema = z.object({
   publicId: z.string(),
   name: z.string(),
   slug: z.string(),
-  visibility: z.string(),
+  visibility: z.enum(["public", "private"]),
   workspace: z.object({
     publicId: z.string(),
     name: z.string(),

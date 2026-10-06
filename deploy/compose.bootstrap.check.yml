@@ -1,0 +1,7 @@
+# Isolated local first-install test ONLY; never include in the server release.
+services:
+  web:
+    ports: !override
+      - "127.0.0.1:3201:3000"
+    environment:
+      NEXT_PUBLIC_DISABLE_SIGN_UP: ${NEXT_PUBLIC_DISABLE_SIGN_UP:-false}

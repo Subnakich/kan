@@ -1,8 +1,9 @@
 import type { BetterAuthClientPlugin } from "better-auth";
 import type { BetterFetchOption } from "better-auth/react";
+import type { ReactAuthClient } from "better-auth/react";
+import { apiKeyClient } from "@better-auth/api-key/client";
 import { stripeClient } from "@better-auth/stripe/client";
 import {
-  apiKeyClient,
   genericOAuthClient,
   magicLinkClient,
 } from "better-auth/client/plugins";
@@ -26,14 +27,25 @@ const socialProvidersPluginClient = {
   },
 } satisfies BetterAuthClientPlugin;
 
-export const authClient = createAuthClient({
-  plugins: [
-    stripeClient({
-      subscription: true,
-    }),
-    magicLinkClient(),
-    apiKeyClient(),
-    genericOAuthClient(),
-    socialProvidersPluginClient,
-  ],
-});
+type KanAuthClientOptions = {
+  plugins: (
+    | ReturnType<typeof stripeClient<{ subscription: true }>>
+    | ReturnType<typeof magicLinkClient>
+    | ReturnType<typeof apiKeyClient>
+    | ReturnType<typeof genericOAuthClient>
+    | typeof socialProvidersPluginClient
+  )[];
+};
+
+export const authClient: ReactAuthClient<KanAuthClientOptions> =
+  createAuthClient({
+    plugins: [
+      stripeClient({
+        subscription: true,
+      }),
+      magicLinkClient(),
+      apiKeyClient(),
+      genericOAuthClient(),
+      socialProvidersPluginClient,
+    ],
+  });

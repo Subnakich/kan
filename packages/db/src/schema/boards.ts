@@ -56,6 +56,7 @@ export const boards = pgTable(
     visibility: boardVisibilityEnum("visibility").notNull().default("private"),
     type: boardTypeEnum("type").notNull().default("regular"),
     isArchived: boolean("isArchived").notNull().default(false),
+    taskControlEnabled: boolean("taskControlEnabled").notNull().default(false),
     sourceBoardId: bigint("sourceBoardId", { mode: "number" }),
   },
   (table) => [

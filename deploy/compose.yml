@@ -1,0 +1,80 @@
+name: trisoft-kan
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kan
+      POSTGRES_USER: kan
+      POSTGRES_PASSWORD: ${KAN_DB_PASSWORD:?Set a new hex database password}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U kan -d kan"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    mem_limit: 1g
+    cpus: 1
+  migrate:
+    image: trisoft-kan-migrate:${KAN_RELEASE:?Set an immutable release label}
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+      target: migrate
+      args:
+        NODE_VERSION: "22"
+    environment:
+      POSTGRES_URL: postgresql://kan:${KAN_DB_PASSWORD:?Set database password}@postgres:5432/kan
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+  web:
+    image: trisoft-kan:${KAN_RELEASE:?Set an immutable release label}
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+      target: web
+      args:
+        NODE_VERSION: "22"
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3100:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_BASE_URL: https://kanban.trisoft.ru
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?Set a new authentication secret}
+      BETTER_AUTH_TRUSTED_ORIGINS: https://kanban.trisoft.ru
+      POSTGRES_URL: postgresql://kan:${KAN_DB_PASSWORD:?Set database password}@postgres:5432/kan
+      NEXT_PUBLIC_ALLOW_CREDENTIALS: "true"
+      NEXT_PUBLIC_DISABLE_SIGN_UP: ${NEXT_PUBLIC_DISABLE_SIGN_UP:-true}
+      NEXT_PUBLIC_DISABLE_EMAIL: "true"
+      NEXT_PUBLIC_KAN_ENV: self-hosted
+      LOG_LEVEL: info
+      TASK_CONTROL_INSTANCE_ID: trisoft-kanban
+      TASK_CONTROL_SERVICE_TOKEN: ${TASK_CONTROL_SERVICE_TOKEN:-}
+      # Unconfigured integration is closed: token is empty and clients are denied.
+      TASK_CONTROL_ALLOWED_IPS: ${TASK_CONTROL_ALLOWED_IPS:-127.0.0.2}
+      TASK_CONTROL_TRUSTED_PROXIES: ${TASK_CONTROL_TRUSTED_PROXIES:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    mem_limit: 2g
+    cpus: 2
+    healthcheck:
+      test:
+        [
+          CMD,
+          /nodejs/bin/node,
+          -e,
+          "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 45s
+      retries: 5
+volumes:
+  postgres:

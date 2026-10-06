@@ -4,6 +4,7 @@ import {
   bigserial,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   primaryKey,
@@ -49,6 +50,8 @@ export const activityTypes = [
   "card.updated.dueDate.updated",
   "card.updated.dueDate.removed",
   "card.archived",
+  "card.updated.owner",
+  "card.updated.blocker",
 ] as const;
 
 export type ActivityType = (typeof activityTypes)[number];
@@ -80,6 +83,27 @@ export const cards = pgTable(
       () => imports.id,
     ),
     dueDate: timestamp("dueDate"),
+    ownerMemberPublicId: varchar("ownerMemberPublicId", { length: 12 }).references(
+      () => workspaceMembers.publicId,
+      { onDelete: "set null" },
+    ),
+    blockerReason: text("blockerReason"),
+    taskSource: jsonb("taskSource").$type<{
+      meeting: { id: string; title: string; started_at: string | null; timezone: string; source_ref: string | null };
+      quote: string;
+      timestamp: string | null;
+      due_text: string | null;
+      review_notes: string[];
+      acceptance_criteria: string[];
+    }>(),
+    redmineLink: jsonb("redmineLink").$type<{
+      instance_id: string; issue_id: number; display_id: string; url: string;
+      exported_at: string; exported_revision: number;
+    }>(),
+    revision: integer("revision").notNull().default(1),
+    deadlineRevision: integer("deadlineRevision").notNull().default(1),
+    columnEnteredAt: timestamp("columnEnteredAt").defaultNow().notNull(),
+    columnVisitId: uuid("columnVisitId").defaultRandom().notNull(),
   },
   (table) => [
     index("card_list_number_idx").on(table.listId, table.cardNumber),

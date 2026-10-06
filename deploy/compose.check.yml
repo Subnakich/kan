@@ -1,0 +1,29 @@
+# Local acceptance override ONLY. Never upload/use this on the production server.
+name: trisoft-kan-release-check
+services:
+  web:
+    ports: !override
+      - "127.0.0.1:3200:3000"
+    environment:
+      NEXT_PUBLIC_BASE_URL: http://localhost:3200
+      BETTER_AUTH_TRUSTED_ORIGINS: http://localhost:3200,http://localhost:3100
+      NEXT_PUBLIC_DISABLE_SIGN_UP: "false"
+      TASK_CONTROL_SERVICE_TOKEN: local-kan-integration-token
+      # Isolated local test network only; production uses the bot's exact IP.
+      TASK_CONTROL_ALLOWED_IPS: 127.0.0.1,::1,172.16.0.0/12,192.168.0.0/16
+      TASK_CONTROL_TRUSTED_PROXIES: ""
+      TASK_CONTROL_GATEWAY_URL: http://gateway:8090
+      TASK_CONTROL_GATEWAY_TOKEN: local-gateway-integration-token
+  gateway:
+    image: node:22-bookworm-slim
+    volumes:
+      - ../tools/task-control:/app/tools/task-control:ro
+      - ../tools/security:/app/tools/security:ro
+      - mock-gateway:/data
+    environment:
+      KAN_URL: http://web:3000
+      TASK_CONTROL_SERVICE_TOKEN: local-kan-integration-token
+      TASK_CONTROL_GATEWAY_TOKEN: local-gateway-integration-token
+    command: node /app/tools/task-control/mock-gateway.mjs
+volumes:
+  mock-gateway:

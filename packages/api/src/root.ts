@@ -1,4 +1,5 @@
 import { attachmentRouter } from "./routers/attachment";
+import { taskControlRouter } from "./routers/task-control";
 import { boardRouter } from "./routers/board";
 import { cardRouter } from "./routers/card";
 import { checklistRouter } from "./routers/checklist";
@@ -16,6 +17,7 @@ import { workspaceRouter } from "./routers/workspace";
 import { createTRPCRouter } from "./trpc";
 
 export const appRouter = createTRPCRouter({
+  taskControl: taskControlRouter,
   attachment: attachmentRouter,
   board: boardRouter,
   card: cardRouter,

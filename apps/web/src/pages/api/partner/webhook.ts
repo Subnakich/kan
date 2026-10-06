@@ -11,8 +11,8 @@ import * as workspaceRepo from "@kan/db/repository/workspace.repo";
 import { createLogger } from "@kan/logger";
 import { getActiveSubscriptions } from "@kan/shared/utils";
 
-import type { TierConfig } from "./_utils";
-import { tierConfig } from "./_utils";
+import type { TierConfig } from "~/server/partner-tiers";
+import { tierConfig } from "~/server/partner-tiers";
 
 const log = createLogger("api");
 

@@ -35,6 +35,7 @@ import { DeleteChecklistConfirmation } from "./components/DeleteChecklistConfirm
 import { DeleteCommentConfirmation } from "./components/DeleteCommentConfirmation";
 import Dropdown from "./components/Dropdown";
 import { DueDateSelector } from "./components/DueDateSelector";
+import TaskControlPanel from "./components/TaskControlPanel";
 import LabelSelector from "./components/LabelSelector";
 import ListSelector from "./components/ListSelector";
 import MemberSelector from "./components/MemberSelector";
@@ -159,6 +160,7 @@ export function CardRightPanel({ isTemplate }: { isTemplate?: boolean }) {
           disabled={!canEdit}
         />
       </div>
+      <TaskControlPanel cardPublicId={cardId ?? ""} disabled={!canEdit} />
     </div>
   );
 }

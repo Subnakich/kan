@@ -6,7 +6,7 @@ import { withRateLimit } from "@kan/api/utils/rateLimit";
 import * as subscriptionRepo from "@kan/db/repository/subscription.repo";
 import { createLogger } from "@kan/logger";
 
-import { tierConfig } from "./_utils";
+import { tierConfig } from "~/server/partner-tiers";
 
 const log = createLogger("api");
 

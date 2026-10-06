@@ -48,17 +48,18 @@ export default function ListSelector({
 
       return { previousCard };
     },
-    onError: (_error, _newList, context) => {
+    onError: (error, _newList, context) => {
       utils.card.byId.setData({ cardPublicId }, context?.previousCard);
       showPopup({
         header: t`Unable to update list`,
-        message: t`Please try again later, or contact customer support.`,
+        message: error.message,
         icon: "error",
       });
     },
     onSettled: async () => {
       await invalidateCard(utils, cardPublicId);
       await utils.board.byId.invalidate();
+      await utils.taskControl.card.invalidate({ cardPublicId });
     },
   });
 

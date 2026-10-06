@@ -64,3 +64,12 @@ i18n.cache
 scripts/
 
 .claude
+
+# Local Docker dependency caches
+.pnpm-store/
+node-compile-cache/
+
+# Python helpers and local backups (never commit runtime data)
+__pycache__/
+*.pyc
+*.dump

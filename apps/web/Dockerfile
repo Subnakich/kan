@@ -1,24 +1,23 @@
 # syntax=docker/dockerfile:1.7
 
-ARG NODE_VERSION=20
+ARG NODE_VERSION=22
 ARG DISTROLESS_NODE_IMAGE=gcr.io/distroless/nodejs${NODE_VERSION}-debian12
 
 # ============================================
-# Stage 1: Alpine base with pnpm and turbo
+# Stage 1: Debian base with pnpm and turbo
 # ============================================
 # Pinned to $BUILDPLATFORM so the JS toolchain never runs under QEMU. Every
-# stage derived from `alpine` (pruner, deps, builder) is therefore native, and
+# stage derived from `base` (pruner, deps, builder) is therefore native, and
 # only the final per-arch stages pay emulation. See .github/docker-build-performance.md.
-FROM --platform=$BUILDPLATFORM node:${NODE_VERSION}-alpine AS alpine
+# Match the Debian/glibc runtime; copying Alpine/musl native modules into
+# distroless Debian can break runtime image processing (sharp).
+FROM --platform=$BUILDPLATFORM node:${NODE_VERSION}-bookworm-slim AS base
 
 # Absolute path: BuildKit does not expand `~` in cache mount targets, so the
 # store dir and the mount target must both be literal for the mount to work.
 ENV PNPM_STORE=/pnpm/store
 
-RUN apk update && \
-    apk add --no-cache libc6-compat && \
-    rm -rf /var/cache/apk/* /tmp/* || true && \
-    corepack enable && \
+RUN corepack enable && \
     corepack prepare pnpm@9.14.2 --activate && \
     npm install turbo@2.3.1 --global && \
     pnpm config set store-dir "$PNPM_STORE"
@@ -26,7 +25,7 @@ RUN apk update && \
 # ============================================
 # Stage 2: Prune the monorepo
 # ============================================
-FROM alpine AS pruner
+FROM base AS pruner
 
 WORKDIR /app
 COPY . .
@@ -36,7 +35,7 @@ RUN turbo prune --scope=@kan/web --scope=@kan/db --docker
 # ============================================
 # Stage 3: Install dependencies
 # ============================================
-FROM alpine AS deps
+FROM base AS deps
 WORKDIR /app
 
 COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
@@ -50,7 +49,7 @@ RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store,sharing=locked \
 # ============================================
 # Stage 4: Build the web application
 # ============================================
-FROM alpine AS builder
+FROM base AS builder
 # Empty default: an unstamped build hides the version row rather than linking
 # to a release tag that does not exist.
 ARG APP_VERSION=""
@@ -74,7 +73,7 @@ RUN --mount=type=cache,id=next-cache,target=/app/apps/web/.next/cache,sharing=lo
 # Deliberately not pinned to $BUILDPLATFORM: drizzle-kit pulls esbuild, which
 # resolves a prebuilt binary per platform. Cross-compiling would put
 # @esbuild/linux-x64 in the arm64 image.
-FROM node:${NODE_VERSION}-alpine AS migrate
+FROM node:${NODE_VERSION}-bookworm-slim AS migrate
 WORKDIR /db
 
 COPY packages/db/drizzle.config.ts ./drizzle.config.ts
@@ -82,7 +81,7 @@ COPY packages/db/migrations/ ./migrations/
 
 RUN --mount=type=cache,id=npm-cache,target=/root/.npm,sharing=locked \
     npm init -y && \
-    npm install drizzle-kit drizzle-orm pg --save-exact && \
+    npm install drizzle-kit@0.31.11 drizzle-orm@0.45.3 pg@8.16.3 --save-exact && \
     # Strip unnecessary files from node_modules
     find node_modules -type f \( \
       -name '*.d.ts' -o \

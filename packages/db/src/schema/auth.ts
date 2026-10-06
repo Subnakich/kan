@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import {
   bigserial,
   boolean,
+  index,
   integer,
   pgTable,
   text,
@@ -51,35 +52,45 @@ export const verification = pgTable("verification", {
   updatedAt: timestamp("updatedAt"),
 }).enableRLS();
 
-export const apikey = pgTable("apiKey", {
-  id: bigserial("id", { mode: "number" }).primaryKey(),
-  name: text("name"),
-  start: text("start"),
-  prefix: text("prefix"),
-  key: text("key").notNull(),
-  userId: uuid("userId")
-    .notNull()
-    .references(() => users.id, { onDelete: "cascade" }),
-  refillInterval: integer("refillInterval"),
-  refillAmount: integer("refillAmount"),
-  lastRefillAt: timestamp("lastRefillAt"),
-  enabled: boolean("enabled"),
-  rateLimitEnabled: boolean("rateLimitEnabled"),
-  rateLimitTimeWindow: integer("rateLimitTimeWindow"),
-  rateLimitMax: integer("rateLimitMax"),
-  requestCount: integer("requestCount"),
-  remaining: integer("remaining"),
-  lastRequest: timestamp("lastRequest"),
-  expiresAt: timestamp("expiresAt"),
-  createdAt: timestamp("createdAt").notNull(),
-  updatedAt: timestamp("updatedAt").notNull(),
-  permissions: text("permissions"),
-  metadata: text("metadata"),
-}).enableRLS();
+export const apikey = pgTable(
+  "apiKey",
+  {
+    id: bigserial("id", { mode: "number" }).primaryKey(),
+    configId: text("configId").notNull().default("default"),
+    name: text("name"),
+    start: text("start"),
+    prefix: text("prefix"),
+    key: text("key").notNull(),
+    // Better Auth calls this referenceId; preserve the existing physical column
+    // and its user FK so installed API keys keep their owners and remain valid.
+    referenceId: uuid("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    refillInterval: integer("refillInterval"),
+    refillAmount: integer("refillAmount"),
+    lastRefillAt: timestamp("lastRefillAt"),
+    enabled: boolean("enabled"),
+    rateLimitEnabled: boolean("rateLimitEnabled"),
+    rateLimitTimeWindow: integer("rateLimitTimeWindow"),
+    rateLimitMax: integer("rateLimitMax"),
+    requestCount: integer("requestCount"),
+    remaining: integer("remaining"),
+    lastRequest: timestamp("lastRequest"),
+    expiresAt: timestamp("expiresAt"),
+    createdAt: timestamp("createdAt").notNull(),
+    updatedAt: timestamp("updatedAt").notNull(),
+    permissions: text("permissions"),
+    metadata: text("metadata"),
+  },
+  (table) => [
+    index("apiKey_configId_idx").on(table.configId),
+    index("apiKey_referenceId_idx").on(table.referenceId),
+  ],
+).enableRLS();
 
 export const apiKeyRelations = relations(apikey, ({ one }) => ({
   user: one(users, {
-    fields: [apikey.userId],
+    fields: [apikey.referenceId],
     references: [users.id],
     relationName: "apiKeyUser",
   }),

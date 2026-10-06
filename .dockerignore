@@ -10,6 +10,9 @@ docker-compose*.yml
 # Dependencies (rebuilt in Docker)
 node_modules
 **/node_modules
+.pnpm-store
+node-compile-cache
+docs
 
 # Build outputs (rebuilt in Docker)
 **/.next

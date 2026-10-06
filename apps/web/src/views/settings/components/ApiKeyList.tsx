@@ -128,7 +128,7 @@ export default function ApiKeyList() {
     );
   };
 
-  if (!isLoading && (!data?.data || data.data.length === 0)) {
+  if (!isLoading && (!data?.data || data.data.apiKeys.length === 0)) {
     return null;
   }
 
@@ -174,7 +174,7 @@ export default function ApiKeyList() {
               </thead>
               <tbody className="divide-y divide-light-600 bg-light-50 dark:divide-dark-600 dark:bg-dark-100">
                 {!isLoading &&
-                  data?.data?.map((apiKey, index) => (
+                  data?.data?.apiKeys.map((apiKey, index) => (
                     <TableRow
                       key={apiKey.id}
                       keyId={apiKey.id}
@@ -182,7 +182,7 @@ export default function ApiKeyList() {
                       keyStart={apiKey.start}
                       createdAt={apiKey.createdAt}
                       lastRequest={apiKey.lastRequest}
-                      isLastRow={index === data.data.length - 1}
+                      isLastRow={index === data.data.apiKeys.length - 1}
                     />
                   ))}
 

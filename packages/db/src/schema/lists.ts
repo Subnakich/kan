@@ -18,6 +18,7 @@ export const lists = pgTable("list", {
   id: bigserial("id", { mode: "number" }).primaryKey(),
   publicId: varchar("publicId", { length: 12 }).notNull().unique(),
   name: varchar("name", { length: 255 }).notNull(),
+  taskRole: varchar("taskRole", { length: 20 }),
   index: integer("index").notNull(),
   createdBy: uuid("createdBy").references(() => users.id, {
     onDelete: "set null",

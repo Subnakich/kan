@@ -1175,13 +1175,13 @@ export const cardRouter = createTRPCRouter({
 
       const deletedAt = new Date();
 
-      await cardRepo.softDelete(ctx.db, {
+      const deletion = await cardRepo.softDelete(ctx.db, {
         cardId: card.id,
         deletedAt,
         deletedBy: userId,
       });
 
-      await cardActivityRepo.create(ctx.db, {
+      if (!deletion.permanentlyDeleted) await cardActivityRepo.create(ctx.db, {
         type: "card.archived",
         cardId: card.id,
         createdBy: userId,
