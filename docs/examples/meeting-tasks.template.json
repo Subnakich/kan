@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "kind": "kan_meeting_tasks",
+  "meeting": {
+    "id": "replace-meeting-id",
+    "title": "Заменить: название встречи",
+    "started_at": null,
+    "timezone": "Europe/Moscow",
+    "source_ref": null
+  },
+  "tasks": [
+    {
+      "id": "task-001",
+      "title": "Заменить: согласованное действие и результат",
+      "description": "Заменить: содержание поручения из транскрибации",
+      "acceptance_criteria": [],
+      "assignee": null,
+      "due_at": null,
+      "due_text": null,
+      "labels": [],
+      "checklist": [],
+      "review_notes": [
+        "Заменить примерные значения перед импортом; уточнить ответственного"
+      ],
+      "source": {
+        "quote": "Заменить: дословная цитата поручения",
+        "timestamp": null
+      }
+    }
+  ]
+}

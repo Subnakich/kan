@@ -21,6 +21,9 @@
 
 ## Features 💫
 
+Trisoft fork: [features, technical map and upstream update procedure](README.trisoft.md).
+Meeting imports: [instructions](docs/meeting-task-import.md), [AI prompt](docs/meeting-task-prompt.md), [JSON template](docs/examples/meeting-tasks.template.json).
+
 - 👁️ **Board Visibility**: Control who can view and edit your boards
 - 🤝 **Workspace Members**: Invite members and collaborate with your team
 - 🚀 **Trello Imports**: Easily import your Trello boards
@@ -169,6 +172,17 @@ pnpm dev
 ```
 
 ## Environment Variables 🔐
+
+Task-control fork: local setup, integration contract and verification are in [docs/task-control.md](docs/task-control.md).
+
+| Variable | Description | Required |
+| --- | --- | --- |
+| `TASK_CONTROL_INSTANCE_ID` | Stable integration instance identifier | With task control |
+| `TASK_CONTROL_SERVICE_TOKEN` | Server-only inbound bot bearer token | With integration API |
+| `TASK_CONTROL_ALLOWED_IPS` | Comma-separated bot IPs/CIDRs; empty disables IP filtering | Configure for production integration |
+| `TASK_CONTROL_TRUSTED_PROXIES` | Trusted proxy IPs/CIDRs for X-Forwarded-For; empty trusts no proxies | When behind a reverse proxy |
+
+Redmine export uses the actor-scoped polling queue through the integration API and `TASK_CONTROL_SERVICE_TOKEN`. No gateway URL, inbound bot port, domain, VPN or SSH tunnel is required. See [bot contract](docs/bot-redmine-polling-contract.md). Legacy `TASK_CONTROL_GATEWAY_URL`/`TASK_CONTROL_GATEWAY_TOKEN` values are unused by this version; do not remove them from old backups needed for rollback.
 
 | Variable                                  | Description                                               | Required                                    | Example                                                     |
 | ----------------------------------------- | --------------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------------- |

@@ -1,0 +1,246 @@
+{
+  "$defs": {
+    "Assignee": {
+      "additionalProperties": false,
+      "properties": {
+        "member_public_id": {
+          "pattern": "^[A-Za-z0-9]{12}$",
+          "title": "Member Public Id",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": ["member_public_id", "name"],
+      "title": "Assignee",
+      "type": "object"
+    },
+    "Meeting": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "started_at": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Started At"
+        },
+        "timezone": {
+          "const": "Europe/Moscow",
+          "enum": ["Europe/Moscow"],
+          "title": "Timezone",
+          "type": "string"
+        },
+        "source_ref": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Source Ref"
+        }
+      },
+      "required": ["id", "title", "started_at", "timezone", "source_ref"],
+      "title": "Meeting",
+      "type": "object"
+    },
+    "MeetingTask": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 50000,
+          "title": "Description",
+          "type": "string"
+        },
+        "acceptance_criteria": {
+          "items": {
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Acceptance Criteria",
+          "type": "array"
+        },
+        "assignee": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Assignee"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "due_at": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Due At"
+        },
+        "due_text": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Due Text"
+        },
+        "labels": {
+          "items": {
+            "maxLength": 255,
+            "type": "string"
+          },
+          "maxItems": 50,
+          "title": "Labels",
+          "type": "array"
+        },
+        "checklist": {
+          "items": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Checklist",
+          "type": "array"
+        },
+        "review_notes": {
+          "items": {
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Review Notes",
+          "type": "array"
+        },
+        "source": {
+          "$ref": "#/$defs/Source"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "acceptance_criteria",
+        "assignee",
+        "due_at",
+        "due_text",
+        "labels",
+        "checklist",
+        "review_notes",
+        "source"
+      ],
+      "title": "MeetingTask",
+      "type": "object"
+    },
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "quote": {
+          "maxLength": 10000,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "timestamp": {
+          "anyOf": [
+            {
+              "maxLength": 100,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Timestamp"
+        }
+      },
+      "required": ["quote", "timestamp"],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "enum": ["1.0"],
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "kind": {
+      "const": "kan_meeting_tasks",
+      "enum": ["kan_meeting_tasks"],
+      "title": "Kind",
+      "type": "string"
+    },
+    "meeting": {
+      "$ref": "#/$defs/Meeting"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/MeetingTask"
+      },
+      "maxItems": 200,
+      "minItems": 1,
+      "title": "Tasks",
+      "type": "array"
+    }
+  },
+  "required": ["schema_version", "kind", "meeting", "tasks"],
+  "title": "MeetingFile",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:trisoft:kan-meeting-tasks:1.0",
+  "description": "Import structure; bot additionally validates real dates, UTC/+03:00 offsets, unique task IDs, nonblank titles/quotes, permissions and byte limits."
+}
