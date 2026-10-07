@@ -4,7 +4,7 @@ set +x
 set -Eeuo pipefail
 umask 077
 export LC_ALL=C
-RELEASE=20261007-invite-link-1
+RELEASE=20261007-invite-link-2
 PREVIOUS=trisoft-kan:20261006-task-control-4-polling
 ROOT=/opt/kanban
 WEB=trisoft-kan-web-1
@@ -113,7 +113,9 @@ BUILDER_CREATED=true
     --build-arg NODE_VERSION=22 --target web -t "trisoft-kan:$RELEASE" -f "$SOURCE/apps/web/Dockerfile" "$SOURCE"
   docker buildx stop "$BUILDER"
 } >> "$BACKUP/build.log" 2>&1
-docker run --rm "trisoft-kan:$RELEASE" -e "$(<"$SOURCE/tools/security/audit-runtime-image.cjs")" > "$BACKUP/image-audit.log" 2>&1
+if ! docker run --rm "trisoft-kan:$RELEASE" -e "$(<"$SOURCE/tools/security/audit-runtime-image.cjs")" > "$BACKUP/image-audit.log" 2>&1; then
+  fail "Runtime image audit failed; inspect $BACKUP/image-audit.log. Working Kan has not been switched."
+fi
 printf 'Backing up Kan database; no migrations are executed.\n'
 "${DC[@]}" exec -T postgres pg_dump -w -U kan -d kan -Fc > "$BACKUP/kan.dump"
 [[ -s $BACKUP/kan.dump ]] || fail 'Empty database backup.'

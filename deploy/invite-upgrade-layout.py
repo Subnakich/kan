@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 PREVIOUS = "trisoft-kan:20261006-task-control-4-polling"
-IMAGE = "trisoft-kan:20261007-invite-link-1"
+IMAGE = "trisoft-kan:20261007-invite-link-2"
 
 
 def prepare(config):

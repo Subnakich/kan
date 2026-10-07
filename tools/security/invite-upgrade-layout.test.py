@@ -14,6 +14,21 @@ layout = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(layout)
 
 class LayoutTests(unittest.TestCase):
+    def test_release_label_matches_installer(self):
+        script = helper.with_name('invite-upgrade-root.sh').read_text()
+        release = layout.IMAGE.removeprefix('trisoft-kan:')
+        self.assertIn('RELEASE=' + release + '\n', script)
+        self.assertIn('PREVIOUS=' + layout.PREVIOUS + '\n', script)
+
+    def test_audit_failure_reports_log_before_any_switch(self):
+        script = helper.with_name('invite-upgrade-root.sh').read_text()
+        audit = script.index('if ! docker run --rm "trisoft-kan:$RELEASE"')
+        failure = script.index('Runtime image audit failed; inspect $BACKUP/image-audit.log')
+        switch = script.index('SWITCHED=true')
+        self.assertLess(audit, failure)
+        self.assertLess(failure, switch)
+        self.assertIn('Working Kan has not been switched.', script)
+
     def config(self):
         return {'name': 'trisoft-kan', 'services': {
             'web': {'image': layout.PREVIOUS, 'environment': {
