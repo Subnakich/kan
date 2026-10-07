@@ -4,6 +4,7 @@ import {
   decodeCursor,
   encodeCursor,
   payloadHash,
+  reviewProblems,
 } from "@kan/db/repository/task-control.repo";
 
 import { taskImportSchema } from "./task-control";
@@ -26,5 +27,32 @@ describe("task-control contract", () => {
     expect(due.safeParse("2026-10-07T15:30:00+03:00").success).toBe(true);
     expect(due.safeParse("2026-10-07").success).toBe(false);
     expect(due.safeParse("2026-10-07T15:30:00").success).toBe(false);
+  });
+  it("allows review confirmation without a deadline", () => {
+    expect(
+      reviewProblems({
+        title: "Task",
+        description: "<p>Result</p>",
+        ownerMemberPublicId: "member000001",
+      }),
+    ).toEqual([]);
+  });
+  it("reports empty rich-text description and missing owner", () => {
+    expect(
+      reviewProblems({
+        title: "Task",
+        description: "<p><br></p>",
+        ownerMemberPublicId: null,
+      }),
+    ).toEqual(["description", "owner"]);
+  });
+  it("reports a blank title and null description", () => {
+    expect(
+      reviewProblems({
+        title: "  ",
+        description: null,
+        ownerMemberPublicId: "member000001",
+      }),
+    ).toEqual(["title", "description"]);
   });
 });

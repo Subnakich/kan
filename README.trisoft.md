@@ -10,6 +10,8 @@
 - Основной ответственный берется из штатных участников карточки. Единственный участник назначается автоматически; при нескольких основной выбирается явно. Второго справочника пользователей нет.
 - Срок до часов и минут, ввод/отображение в `Europe/Moscow`, API хранит момент в UTC. Срок **необязателен**. Без срока нет напоминания о приближении срока, но контроль зависания возможен.
 - В Review разрешены неизвестные ответственный и срок. Для подтверждения в Queue нужны название, описание, ответственный. В Blocked нужна причина.
+- Массовое ревью: кнопка «Ревью карточек» на доске, выбор отдельных карточек или готовых, подтверждение до 100 за раз. Каждая карточка проверяется и переносится отдельно; неполные, измененные или уже вышедшие из Review не переносятся. Выводится результат по каждой отклоненной карточке. Срок не требуется.
+- Перенос карточки работает и на заголовок/отступы колонки. Правила переходов Task control при этом не обходятся.
 - Импорт поручений из JSON через Telegram-бота — только в Review, с цитатой источника, критериями, метками и чеклистом. Повторный импорт защищен от дублей.
 - Журнал изменений и счетчики ревизий позволяют боту контролировать срок и время в колонке. Комментарий не сбрасывает это время.
 - Выбор проекта Redmine, preview, подтверждение и однократная выгрузка снимка. После выгрузки контроль остается в Kan; дальнейшей двусторонней синхронизации нет.
@@ -25,17 +27,17 @@ Kan предоставляет данные и очередь. Telegram-напо
 
 ## Техническая карта
 
-| Слой              | Основные файлы / назначение                                                                                                                                                       |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| UI доски/карточки | `apps/web/src/views/board/components/TaskBoardControl.tsx`, `card/components/TaskControlPanel.tsx`, `RedmineExport.tsx`, штатные Card/MemberSelector/DueDateSelector/ListSelector |
-| tRPC              | `packages/api/src/routers/task-control.ts`, подключение в `root.ts`, проверки в штатном `routers/card.ts`                                                                         |
-| Сервисный REST    | `apps/web/src/pages/api/integrations/v1/[...path].ts`; отдельная серверная авторизация в `packages/api/src/trpc.ts` и `trpc-context.ts`                                           |
-| БД                | `packages/db/src/schema/task-control.ts`, поля `cards/boards/lists`, `repository/task-control.repo.ts`, `redmine-request.repo.ts`                                                 |
-| Экспорт polling   | `packages/api/src/utils/redmine-queue.ts`; `task-gateway.ts` содержит переиспользуемые схемы ответов, а не обязательное входящее соединение                                       |
-| Время / whitelist | `packages/shared/src/utils/task-time.ts`, `packages/api/src/utils/integration-ip-policy.ts`                                                                                       |
-| Auth / runtime    | `packages/auth`, миграция API keys, Dockerfile, lockfile/catalog; Next/Better Auth/Drizzle/native sharp обновлены вместе                                                          |
-| Эксплуатация      | `deploy/`, проверки `tools/security/`, локальные mock/smoke в `tools/task-control/`                                                                                               |
-| Контракты         | [сервисный API](docs/task-control.md), [polling бота](docs/bot-redmine-polling-contract.md), [импорт встреч](docs/meeting-task-import.md)                                         |
+| Слой              | Основные файлы / назначение                                                                                                                                                                                                 |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UI доски/карточки | `apps/web/src/views/board/components/TaskBoardControl.tsx`, `BulkReviewForm.tsx`, `dnd/collision.ts`, `card/components/TaskControlPanel.tsx`, `RedmineExport.tsx`, штатные Card/MemberSelector/DueDateSelector/ListSelector |
+| tRPC              | `packages/api/src/routers/task-control.ts`, подключение в `root.ts`, проверки в штатном `routers/card.ts`                                                                                                                   |
+| Сервисный REST    | `apps/web/src/pages/api/integrations/v1/[...path].ts`; отдельная серверная авторизация в `packages/api/src/trpc.ts` и `trpc-context.ts`                                                                                     |
+| БД                | `packages/db/src/schema/task-control.ts`, поля `cards/boards/lists`, `repository/task-control.repo.ts`, `redmine-request.repo.ts`                                                                                           |
+| Экспорт polling   | `packages/api/src/utils/redmine-queue.ts`; `task-gateway.ts` содержит переиспользуемые схемы ответов, а не обязательное входящее соединение                                                                                 |
+| Время / whitelist | `packages/shared/src/utils/task-time.ts`, `packages/api/src/utils/integration-ip-policy.ts`                                                                                                                                 |
+| Auth / runtime    | `packages/auth`, миграция API keys, Dockerfile, lockfile/catalog; Next/Better Auth/Drizzle/native sharp обновлены вместе                                                                                                    |
+| Эксплуатация      | `deploy/`, проверки `tools/security/`, локальные mock/smoke в `tools/task-control/`                                                                                                                                         |
+| Контракты         | [сервисный API](docs/task-control.md), [polling бота](docs/bot-redmine-polling-contract.md), [импорт встреч](docs/meeting-task-import.md)                                                                                   |
 
 Миграции (примененные файлы **не редактировать**):
 

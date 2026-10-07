@@ -41,7 +41,19 @@ export function createBoardCollisionDetection(lastOverIdRef: {
       const overContainer = args.droppableContainers.find(
         (container) => container.id === overId,
       );
-      const overData = getData(overContainer);
+      let overData = getData(overContainer);
+
+      // A column header/padding is a LIST target. Card moves must resolve it
+      // to the same column's body, not silently cancel in handleDragEnd.
+      if (overData?.type === "LIST") {
+        const body = args.droppableContainers.find((container) => {
+          const data = getData(container);
+          return data?.type === "LIST_BODY" && data.listPublicId === overId;
+        });
+        if (!body) return [];
+        overId = body.id;
+        overData = getData(body);
+      }
 
       if (overData?.type === "LIST_BODY") {
         const cardContainers = args.droppableContainers.filter((container) => {

@@ -78,7 +78,7 @@
       "0": ["isTemplate ? \"Template\" : \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 888]],
+    "origin": [["src/views/board/index.tsx", 889]],
     "translation": "{0} not found"
   },
   "0xWkkH": {
@@ -307,7 +307,11 @@
     "message": "Add a title, description and responsible person before confirming.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/TaskControlPanel.tsx", 197]],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 18],
+      ["src/views/board/components/BulkReviewForm.tsx", 153],
+      ["src/views/card/components/TaskControlPanel.tsx", 197]
+    ],
     "translation": "Add a title, description and responsible person before confirming."
   },
   "qtE5nt": {
@@ -995,7 +999,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 860],
+      ["src/views/board/index.tsx", 861],
       ["src/views/card/index.tsx", 328],
       ["src/views/public/board/index.tsx", 125]
     ],
@@ -1029,7 +1033,7 @@
     "message": "Board name",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 878]],
+    "origin": [["src/views/board/index.tsx", 879]],
     "translation": "Board name"
   },
   "wewm3j": {
@@ -1452,6 +1456,13 @@
     "origin": [["src/views/card/components/TaskControlPanel.tsx", 223]],
     "translation": "Card changed after export. Redmine is a snapshot, not a live sync."
   },
+  "4sowNJ": {
+    "translation": "Card changed. Review it again before confirming.",
+    "message": "Card changed. Review it again before confirming.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]]
+  },
   "sU2uWc": {
     "message": "Card duplicated",
     "placeholders": {},
@@ -1468,6 +1479,20 @@
     "comments": [],
     "origin": [["src/views/card/components/Dropdown.tsx", 48]],
     "translation": "Card duplicated successfully."
+  },
+  "zaTBDF": {
+    "translation": "Card is no longer available on this board.",
+    "message": "Card is no longer available on this board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]]
+  },
+  "fEz5Xp": {
+    "translation": "Card is no longer in Review.",
+    "message": "Card is no longer in Review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]]
   },
   "AgE2vR": {
     "message": "Card member assignments will be cleared when moving to a different workspace.",
@@ -1553,7 +1578,7 @@
     "message": "Check export status",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 130]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 394]],
     "translation": "Check export status"
   },
   "pFGfsR": {
@@ -1577,6 +1602,13 @@
     "comments": [],
     "origin": [["src/views/card/components/TaskControlPanel.tsx", 24]],
     "obsolete": true
+  },
+  "AA0WKp": {
+    "translation": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
+    "message": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]]
   },
   "5IXWmO": {
     "message": "Check your inbox",
@@ -1669,6 +1701,13 @@
     "origin": [["src/views/board/components/Filters.tsx", 229]],
     "translation": "Clear filters"
   },
+  "FBIuPX": {
+    "translation": "Clear selection",
+    "message": "Clear selection",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]]
+  },
   "RRn9jf": {
     "message": "Click on the link we've sent to {magicLinkRecipient} to sign in.",
     "placeholders": {
@@ -1687,6 +1726,7 @@
     "comments": [],
     "origin": [
       ["src/components/Dashboard.tsx", 281],
+      ["src/views/board/components/BulkReviewForm.tsx", 182],
       ["src/views/card/index.tsx", 382],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
@@ -1810,8 +1850,15 @@
     "message": "Confirm export",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 124]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 361]],
     "translation": "Confirm export"
+  },
+  "2b9/XR": {
+    "translation": "Confirm selected → Queue",
+    "message": "Confirm selected → Queue",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 197]]
   },
   "86XI28": {
     "message": "Confirm your email preferences:",
@@ -1829,6 +1876,16 @@
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 188]
     ],
     "translation": "Confirm your new password"
+  },
+  "fBZMTH": {
+    "translation": "Confirmed: {confirmed}. Rejected: {0}.",
+    "message": "Confirmed: {confirmed}. Rejected: {0}.",
+    "placeholders": {
+      "0": ["failures.length"],
+      "confirmed": ["confirmed"]
+    },
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 164]]
   },
   "iSLIjg": {
     "message": "Connect",
@@ -2109,7 +2166,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/index.tsx", 139],
-      ["src/views/board/index.tsx", 1014]
+      ["src/views/board/index.tsx", 1019]
     ],
     "translation": "Create new list"
   },
@@ -2316,7 +2373,7 @@
     "message": "Deadlines use Moscow time (UTC+3).",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 38]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 45]],
     "translation": "Deadlines use Moscow time (UTC+3)."
   },
   "bKzM8L": {
@@ -2791,14 +2848,14 @@
     "message": "Enable on an empty board. Creates Review, Queue, In Progress, Blocked and Done.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 52]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 87]],
     "translation": "Enable on an empty board. Creates Review, Queue, In Progress, Blocked and Done."
   },
   "mTDcVw": {
     "message": "Enable task control",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 53]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 88]],
     "translation": "Enable task control"
   },
   "bFREhu": {
@@ -3101,17 +3158,17 @@
     "obsolete": true
   },
   "+X2hHn": {
-    "translation": "Export outcome is unknown. Ask the administrator to reconcile it; do not create another export.",
     "message": "Export outcome is unknown. Ask the administrator to reconcile it; do not create another export.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 131]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 397]],
+    "translation": "Export outcome is unknown. Ask the administrator to reconcile it; do not create another export."
   },
   "4OjDcU": {
     "message": "Export snapshot to Redmine",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 83]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 201]],
     "translation": "Export snapshot to Redmine"
   },
   "Y3mHoj": {
@@ -3366,7 +3423,7 @@
     "message": "Full exported snapshot",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 122]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 339]],
     "translation": "Full exported snapshot"
   },
   "KiVc+q": {
@@ -3426,7 +3483,7 @@
     "message": "Get started by creating a new list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 996]],
+    "origin": [["src/views/board/index.tsx", 1001]],
     "translation": "Get started by creating a new list"
   },
   "oW13KZ": {
@@ -3915,7 +3972,7 @@
     "message": "Kan remains the task-control system. Export creates a one-time snapshot.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 85]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 204]],
     "translation": "Kan remains the task-control system. Export creates a one-time snapshot."
   },
   "aWDhU5": {
@@ -4123,11 +4180,11 @@
     "translation": "Lists"
   },
   "yQ2kGp": {
-    "translation": "Load more",
     "message": "Load more",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 94]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 247]],
+    "translation": "Load more"
   },
   "1rVAfU": {
     "message": "Load more activities",
@@ -4149,14 +4206,17 @@
     "message": "Loading...",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 572]],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 76],
+      ["src/views/card/components/ActivityList.tsx", 572]
+    ],
     "translation": "Loading..."
   },
   "b+PRvt": {
     "message": "LOCAL DEMO — no real Redmine issue will be created.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 87]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 212]],
     "translation": "LOCAL DEMO — no real Redmine issue will be created."
   },
   "N/bcWA": {
@@ -4512,7 +4572,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/NewListForm.tsx", 128],
-      ["src/views/board/index.tsx", 940]
+      ["src/views/board/index.tsx", 941]
     ],
     "translation": "New list"
   },
@@ -4613,6 +4673,13 @@
     "origin": [["src/views/boards/components/ImportBoardsForm.tsx", 432]],
     "translation": "No boards found"
   },
+  "ZlB+Ym": {
+    "translation": "No cards awaiting review.",
+    "message": "No cards awaiting review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]]
+  },
   "WAQMrN": {
     "message": "No cards due",
     "placeholders": {},
@@ -4633,6 +4700,13 @@
     "comments": [],
     "origin": [["src/views/board/components/Filters.tsx", 134]],
     "translation": "No dates"
+  },
+  "flmDTf": {
+    "translation": "No description",
+    "message": "No description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]]
   },
   "sY2lzr": {
     "message": "No download URL available for this attachment.",
@@ -4659,14 +4733,14 @@
     "message": "No lists",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 992]],
+    "origin": [["src/views/board/index.tsx", 997]],
     "translation": "No lists"
   },
   "fvLNDy": {
     "message": "No lists have been created yet",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 997]],
+    "origin": [["src/views/board/index.tsx", 1002]],
     "translation": "No lists have been created yet"
   },
   "i30J2U": {
@@ -4675,6 +4749,13 @@
     "comments": [],
     "origin": [["src/views/boards/components/ImportBoardsForm.tsx", 283]],
     "translation": "No projects found"
+  },
+  "aVC0yw": {
+    "translation": "No responsible person",
+    "message": "No responsible person",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 148]]
   },
   "ERpq2P": {
     "message": "No results found for \"{debouncedQuery}\".",
@@ -5182,7 +5263,7 @@
     "message": "Preview export",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 117]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 323]],
     "translation": "Preview export"
   },
   "1xwZj/": {
@@ -5210,7 +5291,7 @@
     "message": "Priority",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 100]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 270]],
     "translation": "Priority"
   },
   "ESClHO": {
@@ -5327,7 +5408,7 @@
     "message": "Redmine project",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 88]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 215]],
     "translation": "Redmine project"
   },
   "ekCRTP": {
@@ -5516,11 +5597,14 @@
     "translation": "Responsible person"
   },
   "6gRgw8": {
-    "translation": "Retry",
     "message": "Retry",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 127]]
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 83],
+      ["src/views/card/components/RedmineExport.tsx", 379]
+    ],
+    "translation": "Retry"
   },
   "5k0NLb": {
     "message": "Review",
@@ -5528,6 +5612,16 @@
     "comments": [],
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 92]],
     "translation": "Review"
+  },
+  "xVbUH6": {
+    "translation": "Review cards",
+    "message": "Review cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 72],
+      ["src/views/board/components/TaskBoardControl.tsx", 62]
+    ]
   },
   "/gaSVU": {
     "message": "Roadmap",
@@ -5738,12 +5832,28 @@
     "origin": [["src/views/settings/components/NewWebhookModal.tsx", 32]],
     "translation": "Select at least one event"
   },
+  "L6Nl17": {
+    "translation": "Select card: {0}",
+    "message": "Select card: {0}",
+    "placeholders": {
+      "0": ["card.title"]
+    },
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]]
+  },
   "1kovRK": {
     "message": "Select project",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 38]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 101]],
     "translation": "Select project"
+  },
+  "kVkyPv": {
+    "translation": "Select ready cards",
+    "message": "Select ready cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]]
   },
   "rYUZIe": {
     "message": "Select source",
@@ -6113,7 +6223,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/components/RedmineExport.tsx", 98],
+      ["src/views/card/components/RedmineExport.tsx", 261],
       ["src/views/settings/components/WebhookList.tsx", 232]
     ],
     "translation": "Status"
@@ -6197,7 +6307,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/components/TaskBoardControl.tsx", 28],
+      ["src/views/board/components/TaskBoardControl.tsx", 34],
       ["src/views/card/components/TaskControlPanel.tsx", 56]
     ],
     "translation": "Task control"
@@ -6206,7 +6316,7 @@
     "message": "Task control · MSK",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 44]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 51]],
     "translation": "Task control · MSK"
   },
   "E5nCg2": {
@@ -6250,8 +6360,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 860],
-      ["src/views/board/index.tsx", 897]
+      ["src/views/board/index.tsx", 861],
+      ["src/views/board/index.tsx", 898]
     ],
     "translation": "Template"
   },
@@ -6663,7 +6773,7 @@
     "message": "Tracker",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 96]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 252]],
     "translation": "Tracker"
   },
   "dtbpdR": {
@@ -6731,6 +6841,20 @@
     "comments": [],
     "origin": [["src/views/settings/PermissionsSettings.tsx", 39]],
     "translation": "Unable to clear overrides"
+  },
+  "xLyGxC": {
+    "translation": "Unable to confirm card. Reload and try again.",
+    "message": "Unable to confirm card. Reload and try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]]
+  },
+  "xMN5Kp": {
+    "translation": "Unable to confirm cards. Reload to check their current state before retrying.",
+    "message": "Unable to confirm cards. Reload to check their current state before retrying.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]]
   },
   "5MPY04": {
     "message": "Unable to copy ID",
@@ -6854,6 +6978,13 @@
       ["src/views/card/components/Dropdown.tsx", 53]
     ],
     "translation": "Unable to duplicate card"
+  },
+  "aj6Gse": {
+    "translation": "Unable to load cards awaiting review.",
+    "message": "Unable to load cards awaiting review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]]
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -7424,11 +7555,11 @@
     "translation": "Visibility"
   },
   "qUIljU": {
-    "translation": "Waiting for bot. You can return to this card later.",
     "message": "Waiting for bot. You can return to this card later.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 86]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 209]],
+    "translation": "Waiting for bot. You can return to this card later."
   },
   "BJbLe4": {
     "message": "We are using the <0>AGPL-3.0 license</0>.",
@@ -7603,7 +7734,7 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 47],
-      ["src/views/board/index.tsx", 860],
+      ["src/views/board/index.tsx", 861],
       ["src/views/boards/index.tsx", 58],
       ["src/views/members/index.tsx", 279],
       ["src/views/public/board/index.tsx", 125],
@@ -7846,8 +7977,8 @@
     "origin": [
       ["src/views/board/components/List.tsx", 133],
       ["src/views/board/components/VisibilityButton.tsx", 72],
-      ["src/views/board/index.tsx", 928],
-      ["src/views/board/index.tsx", 1003],
+      ["src/views/board/index.tsx", 929],
+      ["src/views/board/index.tsx", 1008],
       ["src/views/boards/components/BoardsList.tsx", 71],
       ["src/views/boards/index.tsx", 69],
       ["src/views/boards/index.tsx", 90]

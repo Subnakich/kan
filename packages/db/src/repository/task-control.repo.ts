@@ -20,6 +20,8 @@ import {
 } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
+import { reorder } from "./card.repo";
+
 export const TASK_ROLES = [
   "review",
   "queue",
@@ -223,6 +225,102 @@ export async function cardAccess(db: dbClient, publicId: string) {
   if (!card || card.list.deletedAt || card.list.board.deletedAt)
     throw new TaskControlError("Card not found", 404);
   return card;
+}
+
+export function reviewProblems(card: {
+  title: string;
+  description: string | null;
+  ownerMemberPublicId: string | null;
+}) {
+  const problems: ("title" | "description" | "owner")[] = [];
+  if (!card.title.trim()) problems.push("title");
+  if (!card.description?.replace(/<[^>]*>/g, "").trim())
+    problems.push("description");
+  if (!card.ownerMemberPublicId) problems.push("owner");
+  return problems;
+}
+
+export async function reviewCards(db: dbClient, boardPublicId: string) {
+  const board = await getBoard(db, boardPublicId);
+  if (board.isArchived) throw new TaskControlError("Board is archived", 410);
+  const review = board.lists.find((list) => list.taskRole === "review");
+  if (!review) throw new TaskControlError("Review list is missing");
+  const rows = await db.query.cards.findMany({
+    where: and(eq(cards.listId, review.id), isNull(cards.deletedAt)),
+    orderBy: [asc(cards.index), asc(cards.id)],
+    with: { members: { with: { member: { with: { user: true } } } } },
+  });
+  return rows.map((card) => {
+    const owner = card.members.find(
+      (link) =>
+        link.member.publicId === card.ownerMemberPublicId &&
+        link.member.workspaceId === board.workspaceId &&
+        link.member.status === "active" &&
+        !link.member.deletedAt,
+    )?.member;
+    return {
+      publicId: card.publicId,
+      title: card.title,
+      description: card.description,
+      revision: card.revision,
+      dueDate: card.dueDate,
+      ownerName: owner?.user?.name ?? owner?.email ?? null,
+      problems: reviewProblems({
+        ...card,
+        ownerMemberPublicId: owner?.publicId ?? null,
+      }),
+    };
+  });
+}
+
+// Each confirmation is atomic. A rejected card must not roll back other cards,
+// skip the native guard, or move a card changed since the reviewer saw it.
+export async function confirmReview(
+  db: dbClient,
+  boardPublicId: string,
+  input: { cardPublicId: string; expectedRevision: number },
+  userId: string,
+) {
+  return db.transaction(async (tx) => {
+    await tx.execute(sql`SELECT pg_advisory_xact_lock(712340)`);
+    await tx.execute(
+      sql`SELECT id FROM card WHERE "publicId" = ${input.cardPublicId} FOR UPDATE`,
+    );
+    const store = tx as unknown as dbClient;
+    const card = await cardAccess(store, input.cardPublicId);
+    if (card.list.board.publicId !== boardPublicId)
+      throw new TaskControlError("Card not found on this board", 404);
+    const board = await getBoard(store, boardPublicId);
+    if (board.isArchived) throw new TaskControlError("Board is archived", 410);
+    if (card.list.taskRole !== "review")
+      throw new TaskControlError("Card is no longer in Review", 409);
+    if (card.revision !== input.expectedRevision)
+      throw new TaskControlError(
+        "Card changed. Reload and review it again",
+        409,
+      );
+    const queue = board.lists.find((list) => list.taskRole === "queue");
+    if (!queue) throw new TaskControlError("Queue list is missing");
+    if (reviewProblems(card).length)
+      throw new TaskControlError(
+        "Add a title, description and responsible person before confirming",
+      );
+    const result = await reorder(store, {
+      cardId: card.id,
+      newListId: queue.id,
+      newIndex: undefined,
+    });
+    if (!result) throw new TaskControlError("Unable to confirm card");
+    await tx.insert(cardActivities).values({
+      publicId: generateUID(),
+      cardId: card.id,
+      createdBy: userId,
+      type: "card.updated.list",
+      fromListId: card.listId,
+      toListId: queue.id,
+    });
+    return { publicId: card.publicId };
+  });
 }
 
 export async function updateFields(

@@ -78,7 +78,7 @@
       "0": ["isTemplate ? \"Template\" : \"Board\""]
     },
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 888]],
+    "origin": [["src/views/board/index.tsx", 889]],
     "translation": "{0} не найдено"
   },
   "0xWkkH": {
@@ -307,7 +307,11 @@
     "message": "Add a title, description and responsible person before confirming.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/TaskControlPanel.tsx", 197]],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 18],
+      ["src/views/board/components/BulkReviewForm.tsx", 153],
+      ["src/views/card/components/TaskControlPanel.tsx", 197]
+    ],
     "translation": "Для подтверждения нужны название, описание и ответственный."
   },
   "qtE5nt": {
@@ -995,7 +999,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 860],
+      ["src/views/board/index.tsx", 861],
       ["src/views/card/index.tsx", 328],
       ["src/views/public/board/index.tsx", 125]
     ],
@@ -1029,7 +1033,7 @@
     "message": "Board name",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 878]],
+    "origin": [["src/views/board/index.tsx", 879]],
     "translation": "Название доски"
   },
   "wewm3j": {
@@ -1452,6 +1456,13 @@
     "origin": [["src/views/card/components/TaskControlPanel.tsx", 223]],
     "translation": "Карточка изменена после выгрузки. В Redmine сохранен снимок, без синхронизации."
   },
+  "4sowNJ": {
+    "translation": "Карточка изменилась. Проверьте ее заново перед подтверждением.",
+    "message": "Card changed. Review it again before confirming.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]]
+  },
   "sU2uWc": {
     "message": "Card duplicated",
     "placeholders": {},
@@ -1468,6 +1479,20 @@
     "comments": [],
     "origin": [["src/views/card/components/Dropdown.tsx", 48]],
     "translation": "Карточка успешно продублирована."
+  },
+  "zaTBDF": {
+    "translation": "Карточка больше недоступна на этой доске.",
+    "message": "Card is no longer available on this board.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]]
+  },
+  "fEz5Xp": {
+    "translation": "Карточка больше не находится в Review.",
+    "message": "Card is no longer in Review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]]
   },
   "AgE2vR": {
     "message": "Card member assignments will be cleared when moving to a different workspace.",
@@ -1553,7 +1578,7 @@
     "message": "Check export status",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 130]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 394]],
     "translation": "Проверить выгрузку"
   },
   "pFGfsR": {
@@ -1569,6 +1594,13 @@
     "comments": [],
     "origin": [["src/views/card/components/TaskControlPanel.tsx", 184]],
     "translation": "Проверьте описание и ответственного. Срок необязателен. Удалите лишние карточки, остальные подтвердите."
+  },
+  "AA0WKp": {
+    "translation": "Проверьте выбранные карточки перед подтверждением. Готовые перейдут в Queue, остальные останутся в Review. Срок необязателен. До 100 карточек за один раз.",
+    "message": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]]
   },
   "5IXWmO": {
     "message": "Check your inbox",
@@ -1661,6 +1693,13 @@
     "origin": [["src/views/board/components/Filters.tsx", 229]],
     "translation": "Сбросить фильтры"
   },
+  "FBIuPX": {
+    "translation": "Снять выделение",
+    "message": "Clear selection",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]]
+  },
   "RRn9jf": {
     "message": "Click on the link we've sent to {magicLinkRecipient} to sign in.",
     "placeholders": {
@@ -1679,6 +1718,7 @@
     "comments": [],
     "origin": [
       ["src/components/Dashboard.tsx", 281],
+      ["src/views/board/components/BulkReviewForm.tsx", 182],
       ["src/views/card/index.tsx", 382],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
@@ -1802,8 +1842,15 @@
     "message": "Confirm export",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 124]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 361]],
     "translation": "Подтвердить выгрузку"
+  },
+  "2b9/XR": {
+    "translation": "Подтвердить выбранные → Queue",
+    "message": "Confirm selected → Queue",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 197]]
   },
   "86XI28": {
     "message": "Confirm your email preferences:",
@@ -1821,6 +1868,16 @@
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 188]
     ],
     "translation": "Подтвердите новый пароль"
+  },
+  "fBZMTH": {
+    "translation": "Подтверждено: {confirmed}. Отклонено: {0}.",
+    "message": "Confirmed: {confirmed}. Rejected: {0}.",
+    "placeholders": {
+      "0": ["failures.length"],
+      "confirmed": ["confirmed"]
+    },
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 164]]
   },
   "iSLIjg": {
     "message": "Connect",
@@ -2101,7 +2158,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/index.tsx", 139],
-      ["src/views/board/index.tsx", 1014]
+      ["src/views/board/index.tsx", 1019]
     ],
     "translation": "Создать новый список"
   },
@@ -2308,7 +2365,7 @@
     "message": "Deadlines use Moscow time (UTC+3).",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 38]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 45]],
     "translation": "Сроки указаны по Москве (UTC+3)."
   },
   "bKzM8L": {
@@ -2783,14 +2840,14 @@
     "message": "Enable on an empty board. Creates Review, Queue, In Progress, Blocked and Done.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 52]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 87]],
     "translation": "Включается на пустой доске. Создает Review, Queue, In Progress, Blocked и Done."
   },
   "mTDcVw": {
     "message": "Enable task control",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 53]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 88]],
     "translation": "Включить контроль задач"
   },
   "bFREhu": {
@@ -3093,17 +3150,17 @@
     "obsolete": true
   },
   "+X2hHn": {
-    "translation": "Результат выгрузки неизвестен. Попросите администратора сверить операцию; не создавайте повторную выгрузку.",
     "message": "Export outcome is unknown. Ask the administrator to reconcile it; do not create another export.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 131]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 397]],
+    "translation": "Результат выгрузки неизвестен. Попросите администратора сверить операцию; не создавайте повторную выгрузку."
   },
   "4OjDcU": {
     "message": "Export snapshot to Redmine",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 83]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 201]],
     "translation": "Выгрузить в Redmine"
   },
   "Y3mHoj": {
@@ -3358,7 +3415,7 @@
     "message": "Full exported snapshot",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 122]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 339]],
     "translation": "Полный снимок для выгрузки"
   },
   "KiVc+q": {
@@ -3418,7 +3475,7 @@
     "message": "Get started by creating a new list",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 996]],
+    "origin": [["src/views/board/index.tsx", 1001]],
     "translation": "Начните с создания нового списка"
   },
   "oW13KZ": {
@@ -3907,7 +3964,7 @@
     "message": "Kan remains the task-control system. Export creates a one-time snapshot.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 85]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 204]],
     "translation": "В Redmine будет создан снимок задачи. Дальнейший контроль — в Kan."
   },
   "aWDhU5": {
@@ -4115,11 +4172,11 @@
     "translation": "Списки"
   },
   "yQ2kGp": {
-    "translation": "Загрузить еще",
     "message": "Load more",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 94]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 247]],
+    "translation": "Загрузить еще"
   },
   "1rVAfU": {
     "message": "Load more activities",
@@ -4141,14 +4198,17 @@
     "message": "Loading...",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/ActivityList.tsx", 572]],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 76],
+      ["src/views/card/components/ActivityList.tsx", 572]
+    ],
     "translation": "Загрузка..."
   },
   "b+PRvt": {
     "message": "LOCAL DEMO — no real Redmine issue will be created.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 87]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 212]],
     "translation": "Локальное демо: задача в рабочем Redmine не создается."
   },
   "N/bcWA": {
@@ -4504,7 +4564,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/NewListForm.tsx", 128],
-      ["src/views/board/index.tsx", 940]
+      ["src/views/board/index.tsx", 941]
     ],
     "translation": "Новый список"
   },
@@ -4605,6 +4665,13 @@
     "origin": [["src/views/boards/components/ImportBoardsForm.tsx", 432]],
     "translation": "Доски не найдены"
   },
+  "ZlB+Ym": {
+    "translation": "Нет карточек на ревью.",
+    "message": "No cards awaiting review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]]
+  },
   "WAQMrN": {
     "message": "No cards due",
     "placeholders": {},
@@ -4625,6 +4692,13 @@
     "comments": [],
     "origin": [["src/views/board/components/Filters.tsx", 134]],
     "translation": "Нет дат"
+  },
+  "flmDTf": {
+    "translation": "Нет описания",
+    "message": "No description",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]]
   },
   "sY2lzr": {
     "message": "No download URL available for this attachment.",
@@ -4651,14 +4725,14 @@
     "message": "No lists",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 992]],
+    "origin": [["src/views/board/index.tsx", 997]],
     "translation": "Нет списков"
   },
   "fvLNDy": {
     "message": "No lists have been created yet",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/index.tsx", 997]],
+    "origin": [["src/views/board/index.tsx", 1002]],
     "translation": "Списки ещё не созданы"
   },
   "i30J2U": {
@@ -4667,6 +4741,13 @@
     "comments": [],
     "origin": [["src/views/boards/components/ImportBoardsForm.tsx", 283]],
     "translation": "Проекты не найдены"
+  },
+  "aVC0yw": {
+    "translation": "Нет ответственного",
+    "message": "No responsible person",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 148]]
   },
   "ERpq2P": {
     "message": "No results found for \"{debouncedQuery}\".",
@@ -5166,7 +5247,7 @@
     "message": "Preview export",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 117]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 323]],
     "translation": "Проверить перед выгрузкой"
   },
   "1xwZj/": {
@@ -5194,7 +5275,7 @@
     "message": "Priority",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 100]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 270]],
     "translation": "Приоритет"
   },
   "ESClHO": {
@@ -5311,7 +5392,7 @@
     "message": "Redmine project",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 88]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 215]],
     "translation": "Проект"
   },
   "ekCRTP": {
@@ -5500,11 +5581,14 @@
     "translation": "Ответственный"
   },
   "6gRgw8": {
-    "translation": "Повторить",
     "message": "Retry",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 127]]
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 83],
+      ["src/views/card/components/RedmineExport.tsx", 379]
+    ],
+    "translation": "Повторить"
   },
   "5k0NLb": {
     "message": "Review",
@@ -5512,6 +5596,16 @@
     "comments": [],
     "origin": [["src/views/boards/components/TemplateBoards.tsx", 92]],
     "translation": "Рецензия"
+  },
+  "xVbUH6": {
+    "translation": "Ревью карточек",
+    "message": "Review cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/board/components/BulkReviewForm.tsx", 72],
+      ["src/views/board/components/TaskBoardControl.tsx", 62]
+    ]
   },
   "/gaSVU": {
     "message": "Roadmap",
@@ -5714,12 +5808,28 @@
     "origin": [["src/views/settings/components/NewWebhookModal.tsx", 32]],
     "translation": "Выберите хотя бы одно событие"
   },
+  "L6Nl17": {
+    "translation": "Выбрать карточку: {0}",
+    "message": "Select card: {0}",
+    "placeholders": {
+      "0": ["card.title"]
+    },
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]]
+  },
   "1kovRK": {
     "message": "Select project",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 38]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 101]],
     "translation": "Выбрать проект"
+  },
+  "kVkyPv": {
+    "translation": "Выбрать готовые",
+    "message": "Select ready cards",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]]
   },
   "rYUZIe": {
     "message": "Select source",
@@ -6089,7 +6199,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/card/components/RedmineExport.tsx", 98],
+      ["src/views/card/components/RedmineExport.tsx", 261],
       ["src/views/settings/components/WebhookList.tsx", 232]
     ],
     "translation": "Статус"
@@ -6173,7 +6283,7 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/components/TaskBoardControl.tsx", 28],
+      ["src/views/board/components/TaskBoardControl.tsx", 34],
       ["src/views/card/components/TaskControlPanel.tsx", 56]
     ],
     "translation": "Контроль задач"
@@ -6182,7 +6292,7 @@
     "message": "Task control · MSK",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/TaskBoardControl.tsx", 44]],
+    "origin": [["src/views/board/components/TaskBoardControl.tsx", 51]],
     "translation": "Контроль задач · МСК"
   },
   "E5nCg2": {
@@ -6226,8 +6336,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
-      ["src/views/board/index.tsx", 860],
-      ["src/views/board/index.tsx", 897]
+      ["src/views/board/index.tsx", 861],
+      ["src/views/board/index.tsx", 898]
     ],
     "translation": "Шаблон"
   },
@@ -6639,7 +6749,7 @@
     "message": "Tracker",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 96]],
+    "origin": [["src/views/card/components/RedmineExport.tsx", 252]],
     "translation": "Трекер"
   },
   "dtbpdR": {
@@ -6707,6 +6817,20 @@
     "comments": [],
     "origin": [["src/views/settings/PermissionsSettings.tsx", 39]],
     "translation": "Не удалось сбросить переопределения"
+  },
+  "xLyGxC": {
+    "translation": "Не удалось подтвердить карточку. Обновите список и попробуйте снова.",
+    "message": "Unable to confirm card. Reload and try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]]
+  },
+  "xMN5Kp": {
+    "translation": "Не удалось подтвердить карточки. Перед повтором обновите список и проверьте их текущий статус.",
+    "message": "Unable to confirm cards. Reload to check their current state before retrying.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]]
   },
   "5MPY04": {
     "message": "Unable to copy ID",
@@ -6830,6 +6954,13 @@
       ["src/views/card/components/Dropdown.tsx", 53]
     ],
     "translation": "Невозможно дублировать карточку"
+  },
+  "aj6Gse": {
+    "translation": "Не удалось загрузить карточки на ревью.",
+    "message": "Unable to load cards awaiting review.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]]
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -7400,11 +7531,11 @@
     "translation": "Видимость"
   },
   "qUIljU": {
-    "translation": "Ожидаем ответ бота. Можно вернуться к карточке позже.",
     "message": "Waiting for bot. You can return to this card later.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/card/components/RedmineExport.tsx", 86]]
+    "origin": [["src/views/card/components/RedmineExport.tsx", 209]],
+    "translation": "Ожидаем ответ бота. Можно вернуться к карточке позже."
   },
   "BJbLe4": {
     "message": "We are using the <0>AGPL-3.0 license</0>.",
@@ -7579,7 +7710,7 @@
     "comments": [],
     "origin": [
       ["src/components/SettingsLayout.tsx", 47],
-      ["src/views/board/index.tsx", 860],
+      ["src/views/board/index.tsx", 861],
       ["src/views/boards/index.tsx", 58],
       ["src/views/members/index.tsx", 279],
       ["src/views/public/board/index.tsx", 125],
@@ -7822,8 +7953,8 @@
     "origin": [
       ["src/views/board/components/List.tsx", 133],
       ["src/views/board/components/VisibilityButton.tsx", 72],
-      ["src/views/board/index.tsx", 928],
-      ["src/views/board/index.tsx", 1003],
+      ["src/views/board/index.tsx", 929],
+      ["src/views/board/index.tsx", 1008],
       ["src/views/boards/components/BoardsList.tsx", 71],
       ["src/views/boards/index.tsx", 69],
       ["src/views/boards/index.tsx", 90]

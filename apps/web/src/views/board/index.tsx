@@ -58,7 +58,6 @@ import { api } from "~/utils/api";
 import { formatToArray, isPlaceholderPublicId } from "~/utils/helpers";
 import { DeleteCardConfirmation } from "~/views/card/components/DeleteCardConfirmation";
 import BoardDropdown from "./components/BoardDropdown";
-import TaskBoardControl from "./components/TaskBoardControl";
 import CalendarView from "./components/CalendarView";
 import { CardContextDueDateModal } from "./components/CardContextDueDateModal";
 import { CardContextDuplicateModal } from "./components/CardContextDuplicateModal";
@@ -76,6 +75,7 @@ import { MoveBoardForm } from "./components/MoveBoardForm";
 import { NewCardForm } from "./components/NewCardForm";
 import { NewListForm } from "./components/NewListForm";
 import { NewTemplateForm } from "./components/NewTemplateForm";
+import TaskBoardControl from "./components/TaskBoardControl";
 import { UpdateBoardSlugForm } from "./components/UpdateBoardSlugForm";
 import ViewToggle from "./components/ViewToggle";
 import VisibilityButton from "./components/VisibilityButton";
@@ -522,6 +522,7 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
   );
 
   const handleDragStart = ({ active }: DragStartEvent): void => {
+    lastOverIdRef.current = null;
     setActiveId(active.id);
     setActiveWidth(active.rect.current.initial?.width ?? null);
     if (getEventData(active)?.type === "CARD") {
@@ -941,7 +942,11 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                 </span>
               </Button>
             </Tooltip>
-            <TaskBoardControl boardPublicId={boardId ?? ""} canEdit={canCreateList} />
+            <TaskBoardControl
+              boardPublicId={boardId ?? ""}
+              canEdit={canCreateList}
+              canReview={canEditCard}
+            />
             <BoardDropdown
               isTemplate={!!isTemplate}
               isLoading={!boardData}
@@ -1023,6 +1028,13 @@ export default function BoardPage({ isTemplate }: { isTemplate?: boolean }) {
                     onDragStart={handleDragStart}
                     onDragOver={handleDragOver}
                     onDragEnd={handleDragEnd}
+                    onDragCancel={() => {
+                      setActiveId(null);
+                      setActiveWidth(null);
+                      setDragCardsByList(null);
+                      setDragListOrder(null);
+                      lastOverIdRef.current = null;
+                    }}
                   >
                     <SortableContext
                       items={listIds}

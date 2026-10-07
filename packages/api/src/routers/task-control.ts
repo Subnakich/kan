@@ -402,6 +402,83 @@ export const taskIntegrationRouter = createTRPCRouter({
 });
 
 export const taskControlRouter = createTRPCRouter({
+  reviewCards: protectedProcedure
+    .meta(
+      routeMeta(
+        "GET",
+        "/task-control/boards/{boardPublicId}/review",
+        "Cards awaiting review",
+      ),
+    )
+    .input(z.object({ boardPublicId: publicId }))
+    .query(async ({ ctx, input }) => {
+      const board = await repo.getBoard(ctx.db, input.boardPublicId);
+      await assertPermission(
+        ctx.db,
+        sessionUserId(ctx.user),
+        board.workspaceId,
+        "card:view",
+      );
+      return repo.reviewCards(ctx.db, input.boardPublicId);
+    }),
+  confirmReview: protectedProcedure
+    .meta(
+      routeMeta(
+        "POST",
+        "/task-control/boards/{boardPublicId}/review",
+        "Confirm selected Review cards",
+      ),
+    )
+    .input(
+      z.object({
+        boardPublicId: publicId,
+        cards: z
+          .array(
+            z.object({
+              cardPublicId: publicId,
+              expectedRevision: z.number().int().positive(),
+            }),
+          )
+          .min(1)
+          .max(100)
+          .refine(
+            (cards) =>
+              new Set(cards.map((card) => card.cardPublicId)).size ===
+              cards.length,
+            "Select each card only once",
+          ),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userId = sessionUserId(ctx.user);
+      const board = await repo.getBoard(ctx.db, input.boardPublicId);
+      await assertPermission(ctx.db, userId, board.workspaceId, "card:edit");
+      const results: {
+        publicId: string;
+        confirmed: boolean;
+        error: string | null;
+      }[] = [];
+      for (const card of input.cards) {
+        try {
+          await repo.confirmReview(ctx.db, input.boardPublicId, card, userId);
+          results.push({
+            publicId: card.cardPublicId,
+            confirmed: true,
+            error: null,
+          });
+        } catch (error) {
+          results.push({
+            publicId: card.cardPublicId,
+            confirmed: false,
+            error:
+              error instanceof repo.TaskControlError
+                ? error.message
+                : "Unable to confirm card. Reload and try again",
+          });
+        }
+      }
+      return { results };
+    }),
   redmineRequest: protectedProcedure
     .meta(
       routeMeta(
