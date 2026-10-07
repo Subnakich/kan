@@ -3,6 +3,7 @@ import { createAuthMiddleware } from "better-auth/api";
 import { env } from "next-runtime-env";
 
 import type { dbClient } from "@kan/db/client";
+import * as inviteLinkRepo from "@kan/db/repository/inviteLink.repo";
 import * as memberRepo from "@kan/db/repository/member.repo";
 import * as userRepo from "@kan/db/repository/user.repo";
 import { createSubscriber, triggerSubscriberWorkflow } from "@kan/email";
@@ -24,11 +25,27 @@ type BetterAuthUser = {
   stripeCustomerId?: string | null | undefined;
 } & Record<string, unknown>;
 
+// Only the credentials sign-up endpoint may use a local invite callback as
+// registration authorization. The code is always checked against the database.
+function getRegistrationInviteCode(context: unknown): string | null {
+  if (!context || typeof context !== "object" || !("path" in context))
+    return null;
+  if (context.path !== "/sign-up/email" || !("body" in context)) return null;
+  const body = context.body;
+  if (!body || typeof body !== "object" || !("callbackURL" in body))
+    return null;
+  const callbackURL = body.callbackURL;
+  if (typeof callbackURL !== "string" || !callbackURL.startsWith("/invite/"))
+    return null;
+  const code = callbackURL.slice("/invite/".length);
+  return code.length === 12 && /^[0-9a-z]{12}$/.test(code) ? code : null;
+}
+
 export function createDatabaseHooks(db: dbClient) {
   return {
     user: {
       create: {
-        async before(user: BetterAuthUser, _context: unknown) {
+        async before(user: BetterAuthUser, context: unknown) {
           if (env("NEXT_PUBLIC_DISABLE_SIGN_UP")?.toLowerCase() === "true") {
             const pendingInvitation = await memberRepo.getByEmailAndStatus(
               db,
@@ -37,7 +54,26 @@ export function createDatabaseHooks(db: dbClient) {
             );
 
             if (!pendingInvitation) {
-              return Promise.resolve(false);
+              const inviteCode = getRegistrationInviteCode(context);
+              if (!inviteCode) return false;
+
+              const invite = await inviteLinkRepo.getByCodeForRegistration(
+                db,
+                inviteCode,
+              );
+              if (
+                !invite ||
+                invite.status !== "active" ||
+                invite.workspaceDeletedAt !== null
+              )
+                return false;
+              if (
+                invite.expiresAt !== null &&
+                (!(invite.expiresAt instanceof Date) ||
+                  !Number.isFinite(invite.expiresAt.getTime()) ||
+                  invite.expiresAt.getTime() <= Date.now())
+              )
+                return false;
             }
 
             // Fall through to any additional checks below

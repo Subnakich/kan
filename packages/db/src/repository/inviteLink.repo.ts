@@ -1,7 +1,7 @@
 import { and, count, eq } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
-import { workspaceInviteLinks } from "@kan/db/schema";
+import { workspaceInviteLinks, workspaces } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
 export const getActiveCount = async (db: dbClient) => {
@@ -77,4 +77,20 @@ export const getByCode = async (db: dbClient, code: string) => {
   return db.query.workspaceInviteLinks.findFirst({
     where: eq(workspaceInviteLinks.code, code),
   });
+};
+
+// Registration must also reject invitations for a deleted workspace.
+// Keep this separate from getByCode so existing invitation flows are unchanged.
+export const getByCodeForRegistration = async (db: dbClient, code: string) => {
+  const [invite] = await db
+    .select({
+      status: workspaceInviteLinks.status,
+      expiresAt: workspaceInviteLinks.expiresAt,
+      workspaceDeletedAt: workspaces.deletedAt,
+    })
+    .from(workspaceInviteLinks)
+    .innerJoin(workspaces, eq(workspaces.id, workspaceInviteLinks.workspaceId))
+    .where(eq(workspaceInviteLinks.code, code))
+    .limit(1);
+  return invite;
 };
