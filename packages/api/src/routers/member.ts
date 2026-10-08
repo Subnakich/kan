@@ -14,6 +14,7 @@ import {
   getSeatLimit,
   getSubscriptionByPlan,
   hasUnlimitedSeats,
+  isValidMemberDisplayName,
 } from "@kan/shared";
 import { updateSubscriptionSeats } from "@kan/stripe";
 
@@ -778,6 +779,93 @@ export const memberRouter = createTRPCRouter({
         workspacePublicId: workspace.publicId,
         workspaceSlug: workspace.slug,
       };
+    }),
+  updateDisplayName: protectedProcedure
+    .meta({
+      openapi: {
+        summary: "Update member display name",
+        method: "PUT",
+        path: "/workspaces/{workspacePublicId}/members/{memberPublicId}/name",
+        description:
+          "Workspace administrators can update an active member's global account display name. Email, IDs and memberships are unchanged.",
+        tags: ["Workspaces"],
+        protect: true,
+      },
+    })
+    .input(
+      z.object({
+        workspacePublicId: z.string().length(12),
+        memberPublicId: z.string().length(12),
+        name: z.string().trim().refine(isValidMemberDisplayName, {
+          message: "Use 3-255 characters without email or control characters",
+        }),
+      }),
+    )
+    .output(z.object({ success: z.boolean(), name: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const userId = ctx.user?.id;
+      if (!userId) throw new TRPCError({ code: "UNAUTHORIZED" });
+      const workspace = await workspaceRepo.getByPublicId(
+        ctx.db,
+        input.workspacePublicId,
+      );
+      if (!workspace || workspace.deletedAt)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Workspace not found",
+        });
+
+      const administrator = await permissionRepo.getMemberWithRole(
+        ctx.db,
+        userId,
+        workspace.id,
+      );
+      if (administrator?.role !== "admin") {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Only workspace administrators can change member names",
+        });
+      }
+      await assertPermission(ctx.db, userId, workspace.id, "member:edit");
+
+      const member = await memberRepo.getByPublicId(
+        ctx.db,
+        input.memberPublicId,
+      );
+      if (
+        !member ||
+        member.workspaceId !== workspace.id ||
+        member.deletedAt ||
+        member.status !== "active" ||
+        !member.userId
+      ) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Active member account not found",
+        });
+      }
+
+      const result = await memberRepo.updateDisplayName(ctx.db, {
+        workspaceId: workspace.id,
+        memberPublicId: input.memberPublicId,
+        administratorUserId: userId,
+        name: input.name,
+      });
+      if (!result)
+        throw new TRPCError({
+          code: "CONFLICT",
+          message: "Membership changed. Reload and try again.",
+        });
+
+      log.info(
+        {
+          actorUserId: userId,
+          workspacePublicId: input.workspacePublicId,
+          memberPublicId: input.memberPublicId,
+        },
+        "Administrator updated member display name",
+      );
+      return { success: true, name: result.name ?? input.name };
     }),
   updateRole: protectedProcedure
     .meta({

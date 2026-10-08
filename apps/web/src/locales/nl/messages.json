@@ -309,7 +309,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/BulkReviewForm.tsx", 18],
-      ["src/views/board/components/BulkReviewForm.tsx", 153],
+      ["src/views/board/components/BulkReviewForm.tsx", 154],
       ["src/views/card/components/TaskControlPanel.tsx", 197]
     ],
     "translation": ""
@@ -522,7 +522,7 @@
     "message": "Admin",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 221]],
+    "origin": [["src/views/members/index.tsx", 222]],
     "translation": "Beheerder"
   },
   "3pIq39": {
@@ -1429,6 +1429,7 @@
       ["src/views/card/components/DueDateSelector.tsx", 93],
       ["src/views/card/components/TaskControlPanel.tsx", 137],
       ["src/views/members/components/DeleteMemberConfirmation.tsx", 55],
+      ["src/views/members/components/EditMemberNameModal.tsx", 82],
       ["src/views/onboarding/select-plan/index.tsx", 246],
       ["src/views/settings/components/Avatar.tsx", 287],
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 206],
@@ -1457,11 +1458,11 @@
     "translation": ""
   },
   "4sowNJ": {
-    "translation": "",
     "message": "Card changed. Review it again before confirming.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]],
+    "translation": ""
   },
   "sU2uWc": {
     "message": "Card duplicated",
@@ -1481,18 +1482,18 @@
     "translation": "Kaart succesvol gedupliceerd."
   },
   "zaTBDF": {
-    "translation": "",
     "message": "Card is no longer available on this board.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]],
+    "translation": ""
   },
   "fEz5Xp": {
-    "translation": "",
     "message": "Card is no longer in Review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]],
+    "translation": ""
   },
   "AgE2vR": {
     "message": "Card member assignments will be cleared when moving to a different workspace.",
@@ -1535,6 +1536,16 @@
       ["src/views/public/board/CardModal.tsx", 38]
     ],
     "translation": "Kaart-URL gekopieerd naar klembord"
+  },
+  "FCqWmk": {
+    "translation": "Change member name",
+    "message": "Change member name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 57],
+      ["src/views/members/index.tsx", 247]
+    ]
   },
   "VhMDMg": {
     "message": "Change Password",
@@ -1596,11 +1607,11 @@
     "translation": ""
   },
   "AA0WKp": {
-    "translation": "",
     "message": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]],
+    "translation": ""
   },
   "5IXWmO": {
     "message": "Check your inbox",
@@ -1694,11 +1705,11 @@
     "translation": "Filters wissen"
   },
   "FBIuPX": {
-    "translation": "",
     "message": "Clear selection",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]],
+    "translation": ""
   },
   "RRn9jf": {
     "message": "Click on the link we've sent to {magicLinkRecipient} to sign in.",
@@ -1718,7 +1729,7 @@
     "comments": [],
     "origin": [
       ["src/components/Dashboard.tsx", 281],
-      ["src/views/board/components/BulkReviewForm.tsx", 182],
+      ["src/views/board/components/BulkReviewForm.tsx", 183],
       ["src/views/card/index.tsx", 382],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
@@ -1846,11 +1857,11 @@
     "translation": ""
   },
   "2b9/XR": {
-    "translation": "",
     "message": "Confirm selected → Queue",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 197]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 198]],
+    "translation": ""
   },
   "86XI28": {
     "message": "Confirm your email preferences:",
@@ -1870,14 +1881,14 @@
     "translation": "Bevestig je nieuwe wachtwoord"
   },
   "fBZMTH": {
-    "translation": "",
     "message": "Confirmed: {confirmed}. Rejected: {0}.",
     "placeholders": {
       "0": ["failures.length"],
       "confirmed": ["confirmed"]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 164]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 165]],
+    "translation": ""
   },
   "iSLIjg": {
     "message": "Connect",
@@ -2549,6 +2560,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 62],
+      ["src/views/members/components/EditMemberNameModal.tsx", 64],
       ["src/views/settings/AccountSettings.tsx", 36],
       ["src/views/settings/components/UpdateDisplayNameForm.tsx", 71]
     ],
@@ -2572,7 +2585,10 @@
     "message": "Display name updated",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/UpdateDisplayNameForm.tsx", 41]],
+    "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 24],
+      ["src/views/settings/components/UpdateDisplayNameForm.tsx", 41]
+    ],
     "translation": "Weergavenaam bijgewerkt"
   },
   "evj0lK": {
@@ -2764,7 +2780,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 162],
-      ["src/views/members/index.tsx", 244]
+      ["src/views/members/index.tsx", 259]
     ],
     "translation": "Rechten bewerken"
   },
@@ -3390,7 +3406,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 326],
-      ["src/views/members/index.tsx", 312]
+      ["src/views/members/index.tsx", 327]
     ],
     "translation": "Gratis abonnement"
   },
@@ -3615,7 +3631,7 @@
     "message": "Guest",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 223]],
+    "origin": [["src/views/members/index.tsx", 224]],
     "translation": "Gast"
   },
   "CB/NpV": {
@@ -3869,7 +3885,7 @@
     "message": "Invite",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 331]],
+    "origin": [["src/views/members/index.tsx", 346]],
     "translation": "Uitnodigen"
   },
   "KLJ4eD": {
@@ -4321,7 +4337,7 @@
     "origin": [
       ["src/views/card/components/ActivityList.tsx", 55],
       ["src/views/card/components/ActivityList.tsx", 86],
-      ["src/views/members/index.tsx", 222]
+      ["src/views/members/index.tsx", 223]
     ],
     "translation": "Lid"
   },
@@ -4329,7 +4345,7 @@
     "message": "Member options",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 262]],
+    "origin": [["src/views/members/index.tsx", 277]],
     "translation": "Ledenopties"
   },
   "GnG6Oy": {
@@ -4349,7 +4365,7 @@
       ["src/views/board/components/NewCardForm.tsx", 487],
       ["src/views/card/components/MemberSelector.tsx", 117],
       ["src/views/card/index.tsx", 145],
-      ["src/views/members/index.tsx", 284],
+      ["src/views/members/index.tsx", 299],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 90]
     ],
     "translation": "Leden"
@@ -4360,7 +4376,7 @@
       "0": ["workspace.name ?? t`Workspace`"]
     },
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 279]],
+    "origin": [["src/views/members/index.tsx", 294]],
     "translation": "Leden | {0}"
   },
   "/bZzdR": {
@@ -4666,11 +4682,11 @@
     "translation": "Geen borden gevonden"
   },
   "ZlB+Ym": {
-    "translation": "",
     "message": "No cards awaiting review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]],
+    "translation": ""
   },
   "WAQMrN": {
     "message": "No cards due",
@@ -4694,11 +4710,11 @@
     "translation": "Geen datums"
   },
   "flmDTf": {
-    "translation": "",
     "message": "No description",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]],
+    "translation": ""
   },
   "sY2lzr": {
     "message": "No download URL available for this attachment.",
@@ -4743,11 +4759,11 @@
     "translation": "Geen projecten gevonden"
   },
   "aVC0yw": {
-    "translation": "",
     "message": "No responsible person",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 148]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 149]],
+    "translation": ""
   },
   "ERpq2P": {
     "message": "No results found for \"{debouncedQuery}\".",
@@ -4973,7 +4989,7 @@
     "message": "Paused",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 230]],
+    "origin": [["src/views/members/index.tsx", 231]],
     "translation": "Gepauzeerd"
   },
   "UbYdrA": {
@@ -4990,7 +5006,7 @@
     "message": "Pending",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 230]],
+    "origin": [["src/views/members/index.tsx", 231]],
     "translation": "In behandeling"
   },
   "oVBq1w": {
@@ -5194,7 +5210,7 @@
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 65],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 93],
       ["src/views/members/components/InviteMemberForm.tsx", 112],
-      ["src/views/members/index.tsx", 70],
+      ["src/views/members/index.tsx", 71],
       ["src/views/onboarding/workspace-details/index.tsx", 119],
       ["src/views/onboarding/workspace-details/index.tsx", 167],
       ["src/views/settings/components/Avatar.tsx", 200],
@@ -5321,7 +5337,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 305],
-      ["src/views/members/index.tsx", 309]
+      ["src/views/members/index.tsx", 324]
     ],
     "translation": "Pro-abonnement"
   },
@@ -5436,7 +5452,7 @@
     "message": "Remove member",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 253]],
+    "origin": [["src/views/members/index.tsx", 268]],
     "translation": "Lid verwijderen"
   },
   "BZkYSt": {
@@ -5598,14 +5614,14 @@
     "translation": "Beoordeling"
   },
   "xVbUH6": {
-    "translation": "",
     "message": "Review cards",
     "placeholders": {},
     "comments": [],
     "origin": [
       ["src/views/board/components/BulkReviewForm.tsx", 72],
       ["src/views/board/components/TaskBoardControl.tsx", 62]
-    ]
+    ],
+    "translation": ""
   },
   "/gaSVU": {
     "message": "Roadmap",
@@ -5623,14 +5639,14 @@
     "message": "Role",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 353]],
+    "origin": [["src/views/members/index.tsx", 368]],
     "translation": "Rol"
   },
   "jQ6I8X": {
     "message": "Role updated",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 62]],
+    "origin": [["src/views/members/index.tsx", 63]],
     "translation": "Rol bijgewerkt"
   },
   "RzxgOE": {
@@ -5675,6 +5691,7 @@
       ["src/views/card/components/Comment.tsx", 202],
       ["src/views/card/components/DueDateSelector.tsx", 108],
       ["src/views/card/components/TaskControlPanel.tsx", 149],
+      ["src/views/members/components/EditMemberNameModal.tsx", 87],
       ["src/views/settings/components/Avatar.tsx", 290]
     ],
     "translation": "Opslaan"
@@ -5727,7 +5744,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 308],
-      ["src/views/members/index.tsx", 320]
+      ["src/views/members/index.tsx", 335]
     ],
     "translation": "plaatsen"
   },
@@ -5809,13 +5826,13 @@
     "translation": "Selecteer minimaal één gebeurtenis"
   },
   "L6Nl17": {
-    "translation": "",
     "message": "Select card: {0}",
     "placeholders": {
       "0": ["card.title"]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]],
+    "translation": ""
   },
   "1kovRK": {
     "message": "Select project",
@@ -5825,11 +5842,11 @@
     "translation": ""
   },
   "kVkyPv": {
-    "translation": "",
     "message": "Select ready cards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]],
+    "translation": ""
   },
   "rYUZIe": {
     "message": "Select source",
@@ -6316,7 +6333,7 @@
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 305],
       ["src/views/members/components/InviteMemberForm.tsx", 317],
-      ["src/views/members/index.tsx", 311]
+      ["src/views/members/index.tsx", 326]
     ],
     "translation": "Teamabonnement"
   },
@@ -6504,6 +6521,13 @@
     "origin": [["src/views/home/components/Faqs.tsx", 33]],
     "translation": "Het belangrijkste verschil tussen Kan en Trello is dat Kan open source is, waardoor iedereen onze code kan bekijken, aanpassen en eraan kan bijdragen. Ons cloudaanbod biedt ook geen beperkingen op functies voor individueel gebruik, terwijl Trello basisfuncties zoals het aantal borden dat je kunt maken achter een betaalmuur plaatst."
   },
+  "QrVzHY": {
+    "translation": "The member's display name has been updated.",
+    "message": "The member's display name has been updated.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 25]]
+  },
   "6tDFBe": {
     "message": "The member's permissions have been updated.",
     "placeholders": {},
@@ -6518,7 +6542,7 @@
     "message": "The member's role has been updated.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 63]],
+    "origin": [["src/views/members/index.tsx", 64]],
     "translation": "De rol van het lid is bijgewerkt."
   },
   "gUX7b+": {
@@ -6593,6 +6617,13 @@
     "comments": [],
     "origin": [["src/views/board/components/UpdateBoardSlugForm.tsx", 136]],
     "translation": "Deze bord-URL is al in gebruik"
+  },
+  "qZ01PO": {
+    "translation": "This changes the account name in all workspaces. Email, task assignments and bot links stay unchanged.",
+    "message": "This changes the account name in all workspaces. Email, task assignments and bot links stay unchanged.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 59]]
   },
   "mTwGOf": {
     "message": "This invitation link is invalid or has expired.",
@@ -6811,6 +6842,13 @@
     "origin": [["src/views/card/index.tsx", 255]],
     "translation": "Kan label niet toevoegen"
   },
+  "an9Kpg": {
+    "translation": "Unable to change the name. Check your permissions, reload and try again.",
+    "message": "Unable to change the name. Check your permissions, reload and try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 33]]
+  },
   "LeM5RY": {
     "message": "Unable to clear overrides",
     "placeholders": {},
@@ -6819,18 +6857,18 @@
     "translation": "Kan overschrijvingen niet wissen"
   },
   "xLyGxC": {
-    "translation": "",
     "message": "Unable to confirm card. Reload and try again.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]],
+    "translation": ""
   },
   "xMN5Kp": {
-    "translation": "",
     "message": "Unable to confirm cards. Reload to check their current state before retrying.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]],
+    "translation": ""
   },
   "5MPY04": {
     "message": "Unable to copy ID",
@@ -6956,11 +6994,11 @@
     "translation": "Kan kaart niet dupliceren"
   },
   "aj6Gse": {
-    "translation": "",
     "message": "Unable to load cards awaiting review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]],
+    "translation": ""
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -7125,7 +7163,7 @@
     "message": "Unable to update role",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 69]],
+    "origin": [["src/views/members/index.tsx", 70]],
     "translation": "Kan rol niet bijwerken"
   },
   "V1o9Jo": {
@@ -7253,7 +7291,7 @@
     "message": "Unlimited seats",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 319]],
+    "origin": [["src/views/members/index.tsx", 334]],
     "translation": "Onbeperkt aantal plaatsen"
   },
   "Ws+3X+": {
@@ -7352,7 +7390,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/CalendarView.tsx", 555],
-      ["src/views/members/index.tsx", 296],
+      ["src/views/members/index.tsx", 311],
       ["src/views/onboarding/select-plan/index.tsx", 251]
     ],
     "translation": "Upgraden"
@@ -7446,6 +7484,13 @@
     ],
     "translation": "URL moet minimaal 3 tekens lang zijn"
   },
+  "R8JmXH": {
+    "translation": "Use 3-255 characters without email or control characters.",
+    "message": "Use 3-255 characters without email or control characters.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 45]]
+  },
   "QNtP5M": {
     "message": "Use template",
     "placeholders": {},
@@ -7464,7 +7509,7 @@
     "message": "User",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 347]],
+    "origin": [["src/views/members/index.tsx", 362]],
     "translation": "Gebruiker"
   },
   "tYN21H": {
@@ -7712,7 +7757,7 @@
       ["src/components/SettingsLayout.tsx", 47],
       ["src/views/board/index.tsx", 861],
       ["src/views/boards/index.tsx", 58],
-      ["src/views/members/index.tsx", 279],
+      ["src/views/members/index.tsx", 294],
       ["src/views/public/board/index.tsx", 125],
       ["src/views/public/boards/index.tsx", 75]
     ],

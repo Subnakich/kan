@@ -1,8 +1,8 @@
-import { and, count, eq, isNull, ne, or } from "drizzle-orm";
+import { and, count, eq, exists, isNull, ne, or } from "drizzle-orm";
 
 import type { dbClient } from "@kan/db/client";
 import type { MemberRole, MemberStatus } from "@kan/db/schema";
-import { workspaceMembers } from "@kan/db/schema";
+import { users, workspaceMembers, workspaces } from "@kan/db/schema";
 import { generateUID } from "@kan/shared/utils";
 
 export const getActiveCount = async (db: dbClient) => {
@@ -82,6 +82,67 @@ export const getById = async (db: dbClient, memberId: number) => {
   return db.query.workspaceMembers.findFirst({
     where: eq(workspaceMembers.id, memberId),
   });
+};
+
+// Recheck active membership and administrator role in the write itself, so a
+// removed member or demoted administrator cannot be renamed using a stale read.
+export const updateDisplayName = async (
+  db: dbClient,
+  args: {
+    workspaceId: number;
+    memberPublicId: string;
+    administratorUserId: string;
+    name: string;
+  },
+) => {
+  const [result] = await db
+    .update(users)
+    .set({ name: args.name, updatedAt: new Date() })
+    .where(
+      and(
+        exists(
+          db
+            .select({ id: workspaces.id })
+            .from(workspaces)
+            .where(
+              and(
+                eq(workspaces.id, args.workspaceId),
+                isNull(workspaces.deletedAt),
+              ),
+            ),
+        ),
+        exists(
+          db
+            .select({ id: workspaceMembers.id })
+            .from(workspaceMembers)
+            .where(
+              and(
+                eq(workspaceMembers.publicId, args.memberPublicId),
+                eq(workspaceMembers.workspaceId, args.workspaceId),
+                eq(workspaceMembers.userId, users.id),
+                eq(workspaceMembers.status, "active"),
+                isNull(workspaceMembers.deletedAt),
+              ),
+            ),
+        ),
+        exists(
+          db
+            .select({ id: workspaceMembers.id })
+            .from(workspaceMembers)
+            .where(
+              and(
+                eq(workspaceMembers.userId, args.administratorUserId),
+                eq(workspaceMembers.workspaceId, args.workspaceId),
+                eq(workspaceMembers.role, "admin"),
+                eq(workspaceMembers.status, "active"),
+                isNull(workspaceMembers.deletedAt),
+              ),
+            ),
+        ),
+      ),
+    )
+    .returning({ name: users.name });
+  return result;
 };
 
 export const getByPublicIdsWithUsers = async (

@@ -31,6 +31,7 @@ import { useWorkspace } from "~/providers/workspace";
 import { api } from "~/utils/api";
 import { getAvatarUrl } from "~/utils/helpers";
 import { DeleteMemberConfirmation } from "./components/DeleteMemberConfirmation";
+import { EditMemberNameModal } from "./components/EditMemberNameModal";
 import { EditMemberPermissionsModal } from "./components/EditMemberPermissionsModal";
 import { InviteMemberForm } from "./components/InviteMemberForm";
 
@@ -240,6 +241,20 @@ export default function MembersPage() {
               {session?.user.id !== memberId && (
                 <Dropdown
                   items={[
+                    ...(canEditMember && memberId && memberStatus === "active"
+                      ? [
+                          {
+                            label: t`Change member name`,
+                            action: () =>
+                              openModal(
+                                "EDIT_MEMBER_NAME",
+                                memberPublicId,
+                                memberName ?? "",
+                                false,
+                              ),
+                          },
+                        ]
+                      : []),
                     {
                       label: t`Edit permissions`,
                       action: () =>
@@ -429,6 +444,14 @@ export default function MembersPage() {
             centered
           >
             <EditMemberPermissionsModal />
+          </Modal>
+          <Modal
+            modalSize="sm"
+            isVisible={isOpen && modalContentType === "EDIT_MEMBER_NAME"}
+            closeOnClickOutside={false}
+            centered
+          >
+            <EditMemberNameModal />
           </Modal>
         </>
       </div>

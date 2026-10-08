@@ -16,6 +16,7 @@
 - Журнал изменений и счетчики ревизий позволяют боту контролировать срок и время в колонке. Комментарий не сбрасывает это время.
 - Выбор проекта Redmine, preview, подтверждение и однократная выгрузка снимка. После выгрузки контроль остается в Kan; дальнейшей двусторонней синхронизации нет.
 - Интерфейс использует компоненты Kan и локализацию, включая русский язык.
+- Администратор с `member:edit` может изменить имя активного участника: «Участники → ⋯ → Изменить имя участника». Имя общее для аккаунта во всех пространствах; email, ID, назначения и привязки бота не меняются. В этой форме допускается 3–255 символов без email и управляющих символов. Саморедактирование профиля остается штатным. [Контракт и карта файлов](docs/member-display-name.md).
 
 Удаление лишней карточки Task control — физическое удаление карточки и дочерних записей; остается импортный tombstone против повторного создания. Обычные доски сохраняют штатный soft delete. Удаление карточки не удаляет задачу Redmine.
 
@@ -31,6 +32,7 @@ Kan предоставляет данные и очередь. Telegram-напо
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | UI доски/карточки | `apps/web/src/views/board/components/TaskBoardControl.tsx`, `BulkReviewForm.tsx`, `dnd/collision.ts`, `card/components/TaskControlPanel.tsx`, `RedmineExport.tsx`, штатные Card/MemberSelector/DueDateSelector/ListSelector |
 | tRPC              | `packages/api/src/routers/task-control.ts`, подключение в `root.ts`, проверки в штатном `routers/card.ts`                                                                                                                   |
+| Имя участника     | `views/members/components/EditMemberNameModal.tsx`, `routers/member.ts` (`updateDisplayName`), `repository/member.repo.ts` (защищенный UPDATE), `shared/src/member-display-name.ts` (валидация); без миграций               |
 | Сервисный REST    | `apps/web/src/pages/api/integrations/v1/[...path].ts`; отдельная серверная авторизация в `packages/api/src/trpc.ts` и `trpc-context.ts`                                                                                     |
 | БД                | `packages/db/src/schema/task-control.ts`, поля `cards/boards/lists`, `repository/task-control.repo.ts`, `redmine-request.repo.ts`                                                                                           |
 | Экспорт polling   | `packages/api/src/utils/redmine-queue.ts`; `task-gateway.ts` содержит переиспользуемые схемы ответов, а не обязательное входящее соединение                                                                                 |

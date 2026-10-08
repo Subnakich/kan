@@ -309,7 +309,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/BulkReviewForm.tsx", 18],
-      ["src/views/board/components/BulkReviewForm.tsx", 153],
+      ["src/views/board/components/BulkReviewForm.tsx", 154],
       ["src/views/card/components/TaskControlPanel.tsx", 197]
     ],
     "translation": "Add a title, description and responsible person before confirming."
@@ -522,7 +522,7 @@
     "message": "Admin",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 221]],
+    "origin": [["src/views/members/index.tsx", 222]],
     "translation": "Admin"
   },
   "3pIq39": {
@@ -1429,6 +1429,7 @@
       ["src/views/card/components/DueDateSelector.tsx", 93],
       ["src/views/card/components/TaskControlPanel.tsx", 137],
       ["src/views/members/components/DeleteMemberConfirmation.tsx", 55],
+      ["src/views/members/components/EditMemberNameModal.tsx", 82],
       ["src/views/onboarding/select-plan/index.tsx", 246],
       ["src/views/settings/components/Avatar.tsx", 287],
       ["src/views/settings/components/ChangePasswordConfirmation.tsx", 206],
@@ -1457,11 +1458,11 @@
     "translation": "Card changed after export. Redmine is a snapshot, not a live sync."
   },
   "4sowNJ": {
-    "translation": "Card changed. Review it again before confirming.",
     "message": "Card changed. Review it again before confirming.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 14]],
+    "translation": "Card changed. Review it again before confirming."
   },
   "sU2uWc": {
     "message": "Card duplicated",
@@ -1481,18 +1482,18 @@
     "translation": "Card duplicated successfully."
   },
   "zaTBDF": {
-    "translation": "Card is no longer available on this board.",
     "message": "Card is no longer available on this board.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 21]],
+    "translation": "Card is no longer available on this board."
   },
   "fEz5Xp": {
-    "translation": "Card is no longer in Review.",
     "message": "Card is no longer in Review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 16]],
+    "translation": "Card is no longer in Review."
   },
   "AgE2vR": {
     "message": "Card member assignments will be cleared when moving to a different workspace.",
@@ -1535,6 +1536,16 @@
       ["src/views/public/board/CardModal.tsx", 38]
     ],
     "translation": "Card URL copied to clipboard"
+  },
+  "FCqWmk": {
+    "translation": "Change member name",
+    "message": "Change member name",
+    "placeholders": {},
+    "comments": [],
+    "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 57],
+      ["src/views/members/index.tsx", 247]
+    ]
   },
   "VhMDMg": {
     "message": "Change Password",
@@ -1604,11 +1615,11 @@
     "obsolete": true
   },
   "AA0WKp": {
-    "translation": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
     "message": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 74]],
+    "translation": "Check the selected cards before confirming. Ready cards move to Queue; rejected cards stay in Review. Deadline is optional. Up to 100 cards at a time."
   },
   "5IXWmO": {
     "message": "Check your inbox",
@@ -1702,11 +1713,11 @@
     "translation": "Clear filters"
   },
   "FBIuPX": {
-    "translation": "Clear selection",
     "message": "Clear selection",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 107]],
+    "translation": "Clear selection"
   },
   "RRn9jf": {
     "message": "Click on the link we've sent to {magicLinkRecipient} to sign in.",
@@ -1726,7 +1737,7 @@
     "comments": [],
     "origin": [
       ["src/components/Dashboard.tsx", 281],
-      ["src/views/board/components/BulkReviewForm.tsx", 182],
+      ["src/views/board/components/BulkReviewForm.tsx", 183],
       ["src/views/card/index.tsx", 382],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 172],
       ["src/views/settings/components/NewApiKeyModal.tsx", 136]
@@ -1854,11 +1865,11 @@
     "translation": "Confirm export"
   },
   "2b9/XR": {
-    "translation": "Confirm selected → Queue",
     "message": "Confirm selected → Queue",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 197]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 198]],
+    "translation": "Confirm selected → Queue"
   },
   "86XI28": {
     "message": "Confirm your email preferences:",
@@ -1878,14 +1889,14 @@
     "translation": "Confirm your new password"
   },
   "fBZMTH": {
-    "translation": "Confirmed: {confirmed}. Rejected: {0}.",
     "message": "Confirmed: {confirmed}. Rejected: {0}.",
     "placeholders": {
       "0": ["failures.length"],
       "confirmed": ["confirmed"]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 164]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 165]],
+    "translation": "Confirmed: {confirmed}. Rejected: {0}."
   },
   "iSLIjg": {
     "message": "Connect",
@@ -2557,6 +2568,8 @@
     "placeholders": {},
     "comments": [],
     "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 62],
+      ["src/views/members/components/EditMemberNameModal.tsx", 64],
       ["src/views/settings/AccountSettings.tsx", 36],
       ["src/views/settings/components/UpdateDisplayNameForm.tsx", 71]
     ],
@@ -2580,7 +2593,10 @@
     "message": "Display name updated",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/settings/components/UpdateDisplayNameForm.tsx", 41]],
+    "origin": [
+      ["src/views/members/components/EditMemberNameModal.tsx", 24],
+      ["src/views/settings/components/UpdateDisplayNameForm.tsx", 41]
+    ],
     "translation": "Display name updated"
   },
   "evj0lK": {
@@ -2772,7 +2788,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 162],
-      ["src/views/members/index.tsx", 244]
+      ["src/views/members/index.tsx", 259]
     ],
     "translation": "Edit permissions"
   },
@@ -3398,7 +3414,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 326],
-      ["src/views/members/index.tsx", 312]
+      ["src/views/members/index.tsx", 327]
     ],
     "translation": "Free Plan"
   },
@@ -3623,7 +3639,7 @@
     "message": "Guest",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 223]],
+    "origin": [["src/views/members/index.tsx", 224]],
     "translation": "Guest"
   },
   "CB/NpV": {
@@ -3877,7 +3893,7 @@
     "message": "Invite",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 331]],
+    "origin": [["src/views/members/index.tsx", 346]],
     "translation": "Invite"
   },
   "KLJ4eD": {
@@ -4329,7 +4345,7 @@
     "origin": [
       ["src/views/card/components/ActivityList.tsx", 55],
       ["src/views/card/components/ActivityList.tsx", 86],
-      ["src/views/members/index.tsx", 222]
+      ["src/views/members/index.tsx", 223]
     ],
     "translation": "Member"
   },
@@ -4337,7 +4353,7 @@
     "message": "Member options",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 262]],
+    "origin": [["src/views/members/index.tsx", 277]],
     "translation": "Member options"
   },
   "GnG6Oy": {
@@ -4357,7 +4373,7 @@
       ["src/views/board/components/NewCardForm.tsx", 487],
       ["src/views/card/components/MemberSelector.tsx", 117],
       ["src/views/card/index.tsx", 145],
-      ["src/views/members/index.tsx", 284],
+      ["src/views/members/index.tsx", 299],
       ["src/views/pricing/components/FeatureComparisonTable.tsx", 90]
     ],
     "translation": "Members"
@@ -4368,7 +4384,7 @@
       "0": ["workspace.name ?? t`Workspace`"]
     },
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 279]],
+    "origin": [["src/views/members/index.tsx", 294]],
     "translation": "Members | {0}"
   },
   "/bZzdR": {
@@ -4674,11 +4690,11 @@
     "translation": "No boards found"
   },
   "ZlB+Ym": {
-    "translation": "No cards awaiting review.",
     "message": "No cards awaiting review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 87]],
+    "translation": "No cards awaiting review."
   },
   "WAQMrN": {
     "message": "No cards due",
@@ -4702,11 +4718,11 @@
     "translation": "No dates"
   },
   "flmDTf": {
-    "translation": "No description",
     "message": "No description",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 145]],
+    "translation": "No description"
   },
   "sY2lzr": {
     "message": "No download URL available for this attachment.",
@@ -4751,11 +4767,11 @@
     "translation": "No projects found"
   },
   "aVC0yw": {
-    "translation": "No responsible person",
     "message": "No responsible person",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 148]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 149]],
+    "translation": "No responsible person"
   },
   "ERpq2P": {
     "message": "No results found for \"{debouncedQuery}\".",
@@ -4989,7 +5005,7 @@
     "message": "Paused",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 230]],
+    "origin": [["src/views/members/index.tsx", 231]],
     "translation": "Paused"
   },
   "UbYdrA": {
@@ -5006,7 +5022,7 @@
     "message": "Pending",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 230]],
+    "origin": [["src/views/members/index.tsx", 231]],
     "translation": "Pending"
   },
   "oVBq1w": {
@@ -5210,7 +5226,7 @@
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 65],
       ["src/views/members/components/EditMemberPermissionsModal.tsx", 93],
       ["src/views/members/components/InviteMemberForm.tsx", 112],
-      ["src/views/members/index.tsx", 70],
+      ["src/views/members/index.tsx", 71],
       ["src/views/onboarding/workspace-details/index.tsx", 119],
       ["src/views/onboarding/workspace-details/index.tsx", 167],
       ["src/views/settings/components/Avatar.tsx", 200],
@@ -5337,7 +5353,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 305],
-      ["src/views/members/index.tsx", 309]
+      ["src/views/members/index.tsx", 324]
     ],
     "translation": "Pro Plan"
   },
@@ -5452,7 +5468,7 @@
     "message": "Remove member",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 253]],
+    "origin": [["src/views/members/index.tsx", 268]],
     "translation": "Remove member"
   },
   "BZkYSt": {
@@ -5614,14 +5630,14 @@
     "translation": "Review"
   },
   "xVbUH6": {
-    "translation": "Review cards",
     "message": "Review cards",
     "placeholders": {},
     "comments": [],
     "origin": [
       ["src/views/board/components/BulkReviewForm.tsx", 72],
       ["src/views/board/components/TaskBoardControl.tsx", 62]
-    ]
+    ],
+    "translation": "Review cards"
   },
   "/gaSVU": {
     "message": "Roadmap",
@@ -5639,14 +5655,14 @@
     "message": "Role",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 353]],
+    "origin": [["src/views/members/index.tsx", 368]],
     "translation": "Role"
   },
   "jQ6I8X": {
     "message": "Role updated",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 62]],
+    "origin": [["src/views/members/index.tsx", 63]],
     "translation": "Role updated"
   },
   "RzxgOE": {
@@ -5691,6 +5707,7 @@
       ["src/views/card/components/Comment.tsx", 202],
       ["src/views/card/components/DueDateSelector.tsx", 108],
       ["src/views/card/components/TaskControlPanel.tsx", 149],
+      ["src/views/members/components/EditMemberNameModal.tsx", 87],
       ["src/views/settings/components/Avatar.tsx", 290]
     ],
     "translation": "Save"
@@ -5751,7 +5768,7 @@
     "comments": [],
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 308],
-      ["src/views/members/index.tsx", 320]
+      ["src/views/members/index.tsx", 335]
     ],
     "translation": "seats"
   },
@@ -5833,13 +5850,13 @@
     "translation": "Select at least one event"
   },
   "L6Nl17": {
-    "translation": "Select card: {0}",
     "message": "Select card: {0}",
     "placeholders": {
       "0": ["card.title"]
     },
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 118]],
+    "translation": "Select card: {0}"
   },
   "1kovRK": {
     "message": "Select project",
@@ -5849,11 +5866,11 @@
     "translation": "Select project"
   },
   "kVkyPv": {
-    "translation": "Select ready cards",
     "message": "Select ready cards",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 100]],
+    "translation": "Select ready cards"
   },
   "rYUZIe": {
     "message": "Select source",
@@ -6340,7 +6357,7 @@
     "origin": [
       ["src/views/members/components/InviteMemberForm.tsx", 305],
       ["src/views/members/components/InviteMemberForm.tsx", 317],
-      ["src/views/members/index.tsx", 311]
+      ["src/views/members/index.tsx", 326]
     ],
     "translation": "Team Plan"
   },
@@ -6528,6 +6545,13 @@
     "origin": [["src/views/home/components/Faqs.tsx", 33]],
     "translation": "The main difference between Kan and Trello is that Kan is open source, allowing anyone to view, modify, and contribute to our code. Our cloud offering also offers no restrictions on features for individual use, whereas Trello locks basic features such as the number of boards you can create behind a paywall."
   },
+  "QrVzHY": {
+    "translation": "The member's display name has been updated.",
+    "message": "The member's display name has been updated.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 25]]
+  },
   "6tDFBe": {
     "message": "The member's permissions have been updated.",
     "placeholders": {},
@@ -6542,7 +6566,7 @@
     "message": "The member's role has been updated.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 63]],
+    "origin": [["src/views/members/index.tsx", 64]],
     "translation": "The member's role has been updated."
   },
   "gUX7b+": {
@@ -6617,6 +6641,13 @@
     "comments": [],
     "origin": [["src/views/board/components/UpdateBoardSlugForm.tsx", 136]],
     "translation": "This board URL has already been taken"
+  },
+  "qZ01PO": {
+    "translation": "This changes the account name in all workspaces. Email, task assignments and bot links stay unchanged.",
+    "message": "This changes the account name in all workspaces. Email, task assignments and bot links stay unchanged.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 59]]
   },
   "mTwGOf": {
     "message": "This invitation link is invalid or has expired.",
@@ -6835,6 +6866,13 @@
     "origin": [["src/views/card/index.tsx", 255]],
     "translation": "Unable to add label"
   },
+  "an9Kpg": {
+    "translation": "Unable to change the name. Check your permissions, reload and try again.",
+    "message": "Unable to change the name. Check your permissions, reload and try again.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 33]]
+  },
   "LeM5RY": {
     "message": "Unable to clear overrides",
     "placeholders": {},
@@ -6843,18 +6881,18 @@
     "translation": "Unable to clear overrides"
   },
   "xLyGxC": {
-    "translation": "Unable to confirm card. Reload and try again.",
     "message": "Unable to confirm card. Reload and try again.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 23]],
+    "translation": "Unable to confirm card. Reload and try again."
   },
   "xMN5Kp": {
-    "translation": "Unable to confirm cards. Reload to check their current state before retrying.",
     "message": "Unable to confirm cards. Reload to check their current state before retrying.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 52]],
+    "translation": "Unable to confirm cards. Reload to check their current state before retrying."
   },
   "5MPY04": {
     "message": "Unable to copy ID",
@@ -6980,11 +7018,11 @@
     "translation": "Unable to duplicate card"
   },
   "aj6Gse": {
-    "translation": "Unable to load cards awaiting review.",
     "message": "Unable to load cards awaiting review.",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]]
+    "origin": [["src/views/board/components/BulkReviewForm.tsx", 79]],
+    "translation": "Unable to load cards awaiting review."
   },
   "d196/6": {
     "message": "Unable to move board",
@@ -7149,7 +7187,7 @@
     "message": "Unable to update role",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 69]],
+    "origin": [["src/views/members/index.tsx", 70]],
     "translation": "Unable to update role"
   },
   "V1o9Jo": {
@@ -7277,7 +7315,7 @@
     "message": "Unlimited seats",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 319]],
+    "origin": [["src/views/members/index.tsx", 334]],
     "translation": "Unlimited seats"
   },
   "Ws+3X+": {
@@ -7376,7 +7414,7 @@
     "comments": [],
     "origin": [
       ["src/views/board/components/CalendarView.tsx", 555],
-      ["src/views/members/index.tsx", 296],
+      ["src/views/members/index.tsx", 311],
       ["src/views/onboarding/select-plan/index.tsx", 251]
     ],
     "translation": "Upgrade"
@@ -7470,6 +7508,13 @@
     ],
     "translation": "URL must be at least 3 characters long"
   },
+  "R8JmXH": {
+    "translation": "Use 3-255 characters without email or control characters.",
+    "message": "Use 3-255 characters without email or control characters.",
+    "placeholders": {},
+    "comments": [],
+    "origin": [["src/views/members/components/EditMemberNameModal.tsx", 45]]
+  },
   "QNtP5M": {
     "message": "Use template",
     "placeholders": {},
@@ -7488,7 +7533,7 @@
     "message": "User",
     "placeholders": {},
     "comments": [],
-    "origin": [["src/views/members/index.tsx", 347]],
+    "origin": [["src/views/members/index.tsx", 362]],
     "translation": "User"
   },
   "tYN21H": {
@@ -7736,7 +7781,7 @@
       ["src/components/SettingsLayout.tsx", 47],
       ["src/views/board/index.tsx", 861],
       ["src/views/boards/index.tsx", 58],
-      ["src/views/members/index.tsx", 279],
+      ["src/views/members/index.tsx", 294],
       ["src/views/public/board/index.tsx", 125],
       ["src/views/public/boards/index.tsx", 75]
     ],
